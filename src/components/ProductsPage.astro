@@ -1,0 +1,56 @@
+---
+import CatalogSpec from './CatalogSpec.astro';
+import { tr, company, type Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const isZh = locale === 'zh-Hant';
+const prefix = isZh ? '/zh-Hant' : '';
+const telHref = `tel:${company.phone.replace(/[^0-9+]/g, '')}`;
+---
+
+
+<section class="bg-white text-brand-ink">
+  <div class="container-x pt-10 sm:pt-14 pb-12 sm:pb-16">
+    <div class="flex items-start gap-5 mb-2">
+      <span class="mt-4 h-2.5 w-2.5 rounded-full bg-brand-red flex-none" aria-hidden="true"></span>
+      <h1 class="display-hx text-bal text-[clamp(34px,3.8vw,56px)]">{tr('products.hero.title', locale)}</h1>
+    </div>
+    <p class="text-[17px] sm:text-[18px] leading-[1.7] text-brand-ink/70 max-w-[68ch]">
+      {tr('products.hero.body', locale)}
+    </p>
+  </div>
+</section>
+
+
+<section class="bg-white text-brand-ink">
+  <div class="container-x pb-20 sm:pb-28">
+    <CatalogSpec locale={locale} />
+  </div>
+</section>
+
+
+
+<section class="bg-[#F7F6F4] text-brand-ink">
+  <div class="container-x py-16 sm:py-20 text-center">
+    <h2 class="display-hx text-bal text-[clamp(30px,3.4vw,52px)] mb-4">
+      {isZh ? '需要批發報價與包裝資料？' : 'Need wholesale pricing & pack details?'}
+    </h2>
+    <p class="text-[16px] leading-[1.7] text-brand-ink/70 max-w-[52ch] mx-auto mb-10">
+      {isZh
+        ? '留下所需產品與數量，銷售團隊將跟進報價及包裝資料。'
+        : "Tell us your products and quantities. Our team will follow up with pricing and packaging information."}
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href={`${prefix}/contact/`} class="inline-flex items-center justify-center rounded-full bg-brand-red text-white px-8 py-3.5 text-[15px] font-medium hover:bg-brand-red-dark transition-colors">
+        {tr('nav.requestSamples', locale)} →
+      </a>
+      <a href={company.phone ? telHref : undefined} aria-disabled={!company.phone || undefined} class="inline-flex items-center justify-center rounded-full border border-black/30 text-brand-ink px-8 py-3.5 text-[15px] hover:bg-black hover:text-white transition-colors">
+        ☎ {company.phone || (isZh ? "[電話待補]" : "[Phone to be added]")}
+      </a>
+    </div>
+  </div>
+</section>

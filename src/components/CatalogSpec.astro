@@ -1,0 +1,92 @@
+---
+import products from '../data/products.json';
+interface Props { locale: 'en' | 'zh-Hant'; }
+const {locale} = Astro.props;
+const zh = locale === 'zh-Hant';
+const t = (f: {zh: string; en: string}) => zh ? f.zh : f.en;
+// Compact presentation only: the underlying PDF specifications remain unchanged.
+const compactPack = (pack: string) => pack
+  .replace(/(\d) (g|lb|oz)\b/g, '$1$2')
+  .replace(/\/piece\b/g, '/pc')
+  .replace(/ × /g, '×')
+  .replace(/ (pieces|packs)\/bag/g, '/bag');
+const compactCount = (item: {pack: string; caseCount: string}) =>
+  item.caseCount.replace('Approx. ', '≈') + (item.pack.includes('packs/bag') ? ' packs/case' : ' pcs/case');
+const note = {
+  k: { zh: 'MINIMUM / DELIVERY', en: 'MINIMUM / DELIVERY' },
+  v: {
+    zh: '請提供送貨城市、ZIP Code、所需產品與預計箱數，由銷售確認配送範圍及起訂要求；配送費與預計到貨時間於報價時確認。',
+    en: 'Share your delivery city, ZIP Code, products and expected case quantities to confirm coverage and order minimums. Delivery fees and estimated arrival are confirmed with your quote.',
+  },
+};
+---
+
+<div class="mb-8" data-category-navigation>
+  <div class="lg:hidden">
+    <label for="category-select" class="block text-[14px] font-semibold mb-2">{zh ? '快速選擇品類' : 'Jump to a category'}</label>
+    <select id="category-select" class="w-full min-h-[48px] border border-black/20 rounded-md bg-white px-3 py-2">
+      <option value="">{zh ? '選擇產品品類' : 'Choose a product category'}</option>
+      {products.map(cat => <option value={`category-${cat.id}`}>{t(cat)}</option>)}
+    </select>
+  </div>
+  <nav class="hidden lg:flex flex-wrap gap-2" aria-label={zh ? '產品品類' : 'Product categories'}>
+    {products.map(cat => <a href={`#category-${cat.id}`} class="rounded-full border border-black/15 px-4 py-2 text-[14px] hover:border-brand-red hover:text-brand-red">{t(cat)}</a>)}
+  </nav>
+  <noscript><ul class="lg:hidden flex flex-wrap gap-3 mt-4">{products.map(cat => <li><a href={`#category-${cat.id}`} class="text-brand-red underline">{t(cat)}</a></li>)}</ul></noscript>
+  <p class="mt-5 text-[13px] leading-relaxed text-brand-ink/65">{zh
+    ? '規格說明：pc / pcs＝個；bag＝袋；pack＝包；case＝箱；≈＝約數。具體包裝以產品標籤為準。'
+    : 'Units: pc / pcs = pieces; bag = bag; pack = pack; case = case; ≈ = approximate quantity. Refer to the product label for packaging details.'}</p>
+</div>
+
+  <div data-product-catalog class="catalog-columns">
+      {products.map((cat) => (
+        <div id={`category-${cat.id}`} tabindex="-1" class="catalog-card bg-white border border-brand-ink/10 shadow-sm">
+          <div class="bg-neutral-100 border-l-4 border-brand-red px-4 py-3">
+            <h3 class="font-sans text-[18px] text-brand-ink font-semibold">{t(cat)}</h3>
+          </div>
+          <ul>
+            {cat.items.map((item) => (
+              <li data-product-id={item.id} class="catalog-row border-t border-brand-ink/5 first:border-t-0">
+                <span class="catalog-name font-medium text-brand-ink">{t(item)}</span>
+                <div lang="en" class="catalog-spec text-brand-ink/70">
+                  <span data-pack aria-label={item.pack}>{compactPack(item.pack)}</span>
+                  <span aria-hidden="true" class="text-brand-ink/30">·</span>
+                  <span data-case-count aria-label={'Case quantity: ' + item.caseCount}>{compactCount(item)}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+  </div>
+
+<div class="mt-6 sm:mt-8 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-5 border border-black/15 bg-neutral-50 px-5 py-4">
+  <span class="text-[10px] font-bold tracking-eyebrow uppercase text-brand-red  flex-none">{t(note.k)}</span>
+  <span class="text-[15px] sm:text-base text-brand-ink/80 leading-relaxed font-medium">{t(note.v)}</span>
+</div>
+
+<script>
+  document.querySelector<HTMLSelectElement>('#category-select')?.addEventListener('change', event => {
+    const id = (event.currentTarget as HTMLSelectElement).value;
+    const target = document.getElementById(id);
+    if (target) {
+      window.location.hash = id;
+      target.focus({ preventScroll: true });
+    }
+  });
+</script>
+
+<style>
+  .catalog-columns { column-count: 1; column-gap: 24px; }
+  .catalog-card { display: inline-block; width: 100%; margin-bottom: 24px; break-inside: avoid; vertical-align: top; scroll-margin-top: 120px; }
+  .catalog-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; padding: 12px 16px; }
+  .catalog-name { font-size: 14px; line-height: 1.6; }
+  .catalog-spec { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: flex-end; gap: 0 5px; margin-left: auto; font-size: 12px; line-height: 1.6; text-align: right; }
+  [data-case-count] { white-space: nowrap; }
+  @media (min-width: 1280px) {
+    .catalog-columns { column-count: 2; }
+    .catalog-row { flex-wrap: nowrap; }
+    .catalog-name, .catalog-spec { white-space: nowrap; }
+    .catalog-spec { flex-wrap: nowrap; flex-shrink: 0; }
+  }
+</style>

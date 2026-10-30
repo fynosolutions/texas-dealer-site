@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HomeV2 from '../components/HomeV2.astro';
+import { site } from '../data/site';
+const locale = 'en';
+---
+<BaseLayout locale={locale} title={site.legalName[locale] + ' — Restaurant Supply in Texas'} currentPath="/">
+  <HomeV2 locale={locale} />
+</BaseLayout>

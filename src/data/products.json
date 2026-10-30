@@ -1,0 +1,400 @@
+[
+  {
+    "id": "five-color",
+    "en": "5-Color Gyoza",
+    "zh": "五彩鍋貼",
+    "sourcePage": 3,
+    "items": [
+      {
+        "id": "five-color-1",
+        "en": "Beef & Celery · Purple",
+        "zh": "西芹牛肉 · 紫",
+        "pack": "30 g/piece · 2 lb/bag · 10 bags/case",
+        "caseCount": "300"
+      },
+      {
+        "id": "five-color-2",
+        "en": "Pork & Napa · White",
+        "zh": "白菜豬肉 · 白",
+        "pack": "30 g/piece · 2 lb/bag · 10 bags/case",
+        "caseCount": "300"
+      },
+      {
+        "id": "five-color-3",
+        "en": "Chicken & Corn · Yellow",
+        "zh": "玉米雞肉 · 黃",
+        "pack": "30 g/piece · 2 lb/bag · 10 bags/case",
+        "caseCount": "300"
+      },
+      {
+        "id": "five-color-4",
+        "en": "Shrimp & Water Chestnut · Pink",
+        "zh": "鮮蝦馬蹄 · 粉",
+        "pack": "30 g/piece · 2 lb/bag · 10 bags/case",
+        "caseCount": "300"
+      },
+      {
+        "id": "five-color-5",
+        "en": "Vegetable · Green",
+        "zh": "素菜 · 綠",
+        "pack": "30 g/piece · 2 lb/bag · 10 bags/case",
+        "caseCount": "300"
+      }
+    ]
+  },
+  {
+    "id": "cooked-gyoza",
+    "en": "Fully Cooked Gyoza",
+    "zh": "全熟煎餃",
+    "sourcePage": 3,
+    "items": [
+      {
+        "id": "cooked-gyoza-1",
+        "en": "Vegetable",
+        "zh": "素菜煎餃",
+        "pack": "21 g/piece · 2 lb/bag · 8 bags/case",
+        "caseCount": "Approx. 346"
+      },
+      {
+        "id": "cooked-gyoza-2",
+        "en": "Beef & Vegetable",
+        "zh": "牛肉蔬菜煎餃",
+        "pack": "21 g/piece · 2 lb/bag · 8 bags/case",
+        "caseCount": "Approx. 346"
+      },
+      {
+        "id": "cooked-gyoza-3",
+        "en": "Chicken & Cabbage",
+        "zh": "雞肉包菜煎餃",
+        "pack": "21 g/piece · 2 lb/bag · 8 bags/case",
+        "caseCount": "Approx. 346"
+      },
+      {
+        "id": "cooked-gyoza-4",
+        "en": "Pork & Napa",
+        "zh": "豬肉白菜煎餃",
+        "pack": "21 g/piece · 2 lb/bag · 8 bags/case",
+        "caseCount": "Approx. 346"
+      }
+    ]
+  },
+  {
+    "id": "popcorn-wonton",
+    "en": "Popcorn Wonton",
+    "zh": "爆米花炸雲吞",
+    "sourcePage": 3,
+    "items": [
+      {
+        "id": "popcorn-wonton-1",
+        "en": "Beef & Cheese",
+        "zh": "牛肉芝士",
+        "pack": "17 g/piece · 8 oz/bag · 40 bags/case",
+        "caseCount": "534"
+      },
+      {
+        "id": "popcorn-wonton-2",
+        "en": "Chicken & Cabbage",
+        "zh": "雞肉白菜",
+        "pack": "17 g/piece · 8 oz/bag · 40 bags/case",
+        "caseCount": "534"
+      }
+    ]
+  },
+  {
+    "id": "mini-dumplings",
+    "en": "Mini Dumplings",
+    "zh": "精緻小水餃",
+    "sourcePage": 3,
+    "items": [
+      {
+        "id": "mini-dumplings-1",
+        "en": "Mini Dumplings",
+        "zh": "精緻小水餃",
+        "pack": "17 g/piece · 1 lb/bag · 20 bags/case",
+        "caseCount": "534"
+      }
+    ]
+  },
+  {
+    "id": "raw-dumplings",
+    "en": "Raw Dumplings",
+    "zh": "餐館水餃（生）",
+    "sourcePage": 3,
+    "items": [
+      {
+        "id": "raw-dumplings-1",
+        "en": "Pork & Vegetable",
+        "zh": "豬肉",
+        "pack": "38 g/piece · 25 pieces/bag · 8 bags/case",
+        "caseCount": "200"
+      },
+      {
+        "id": "raw-dumplings-2",
+        "en": "Chicken & Vegetable",
+        "zh": "雞肉",
+        "pack": "38 g/piece · 25 pieces/bag · 8 bags/case",
+        "caseCount": "200"
+      },
+      {
+        "id": "raw-dumplings-3",
+        "en": "Mushroom & Mixed Vegetable",
+        "zh": "冬菇素菜",
+        "pack": "36 g/piece · 25 pieces/bag · 8 bags/case",
+        "caseCount": "200"
+      }
+    ]
+  },
+  {
+    "id": "soup-dumplings",
+    "en": "Soup Dumplings",
+    "zh": "灌湯小籠包",
+    "sourcePage": 3,
+    "items": [
+      {
+        "id": "soup-dumplings-1",
+        "en": "Pork",
+        "zh": "豬肉灌湯",
+        "pack": "36 g/piece · 30 pieces/bag · 10 bags/case",
+        "caseCount": "300"
+      },
+      {
+        "id": "soup-dumplings-2",
+        "en": "Chicken",
+        "zh": "雞肉灌湯",
+        "pack": "36 g/piece · 30 pieces/bag · 10 bags/case",
+        "caseCount": "300"
+      }
+    ]
+  },
+  {
+    "id": "cooked-wonton",
+    "en": "Cooked Wonton (Not Fried)",
+    "zh": "熟雲吞（未炸）",
+    "sourcePage": 3,
+    "items": [
+      {
+        "id": "cooked-wonton-1",
+        "en": "Ready to Reheat",
+        "zh": "復熱即食",
+        "pack": "56 pieces/bag · 10 bags/case",
+        "caseCount": "560"
+      }
+    ]
+  },
+  {
+    "id": "rice-balls",
+    "en": "Glutinous Rice Balls",
+    "zh": "湯圓",
+    "sourcePage": 3,
+    "items": [
+      {
+        "id": "rice-balls-1",
+        "en": "Millet · Black Sesame",
+        "zh": "大黃米黑芝麻",
+        "pack": "200 g/bag · 30 bags/case",
+        "caseCount": "300"
+      },
+      {
+        "id": "rice-balls-2",
+        "en": "Millet · Peanut",
+        "zh": "大黃米花生",
+        "pack": "200 g/bag · 30 bags/case",
+        "caseCount": "300"
+      },
+      {
+        "id": "rice-balls-3",
+        "en": "Rainbow",
+        "zh": "彩虹",
+        "pack": "200 g/bag · 30 bags/case",
+        "caseCount": "600"
+      },
+      {
+        "id": "rice-balls-4",
+        "en": "Peanut",
+        "zh": "花生",
+        "pack": "200 g/bag · 30 bags/case",
+        "caseCount": "300"
+      },
+      {
+        "id": "rice-balls-5",
+        "en": "Bean Paste",
+        "zh": "豆沙",
+        "pack": "200 g/bag · 30 bags/case",
+        "caseCount": "300"
+      },
+      {
+        "id": "rice-balls-6",
+        "en": "Black Sesame",
+        "zh": "黑芝麻",
+        "pack": "200 g/bag · 30 bags/case",
+        "caseCount": "300"
+      },
+      {
+        "id": "rice-balls-7",
+        "en": "Fried Rice Balls",
+        "zh": "炸不爆 · 油炸湯圓",
+        "pack": "300 g/bag · 30 bags/case",
+        "caseCount": "300"
+      }
+    ]
+  },
+  {
+    "id": "buns",
+    "en": "Buns",
+    "zh": "饅頭",
+    "sourcePage": 4,
+    "items": [
+      {
+        "id": "buns-1",
+        "en": "Traditional Steamed Bun",
+        "zh": "北方傳統饅頭",
+        "pack": "90 g × 6 pieces/bag · 10 bags/case",
+        "caseCount": "60"
+      },
+      {
+        "id": "buns-2",
+        "en": "Wheat Bran Bun",
+        "zh": "全麥養生饅頭",
+        "pack": "90 g × 6 pieces/bag · 10 bags/case",
+        "caseCount": "60"
+      },
+      {
+        "id": "buns-3",
+        "en": "Milk Bun",
+        "zh": "牛奶饅頭",
+        "pack": "90 g × 6 pieces/bag · 10 bags/case",
+        "caseCount": "60"
+      },
+      {
+        "id": "buns-4",
+        "en": "Brown Sugar Bun",
+        "zh": "紅糖饅頭",
+        "pack": "90 g × 6 pieces/bag · 10 bags/case",
+        "caseCount": "60"
+      }
+    ]
+  },
+  {
+    "id": "blossom-buns",
+    "en": "Blossom Buns",
+    "zh": "開花饅頭",
+    "sourcePage": 4,
+    "items": [
+      {
+        "id": "blossom-buns-1",
+        "en": "Pumpkin",
+        "zh": "南瓜開花饅頭",
+        "pack": "80 g × 6 pieces/bag · 18 bags/case",
+        "caseCount": "108"
+      },
+      {
+        "id": "blossom-buns-2",
+        "en": "Purple Sweet Potato",
+        "zh": "紫薯開花饅頭",
+        "pack": "80 g × 6 pieces/bag · 18 bags/case",
+        "caseCount": "108"
+      }
+    ]
+  },
+  {
+    "id": "dim-sum",
+    "en": "Dim Sum · Cruller · Noodles",
+    "zh": "點心 · 油條 · 麵食",
+    "sourcePage": 4,
+    "items": [
+      {
+        "id": "dim-sum-1",
+        "en": "Sticky Rice with Chicken & Mushrooms",
+        "zh": "菌菇糯米雞",
+        "pack": "100 g × 6 pieces/bag · 24 bags/case",
+        "caseCount": "144"
+      },
+      {
+        "id": "dim-sum-2",
+        "en": "Scallion Pancake",
+        "zh": "蔥香小油餅",
+        "pack": "120 g × 4 pieces/bag · 12 bags/case",
+        "caseCount": "48"
+      },
+      {
+        "id": "dim-sum-3",
+        "en": "Chinese Cruller · Small",
+        "zh": "中式油條（小）",
+        "pack": "50 g × 6 pieces/bag · 14 bags/case",
+        "caseCount": "84"
+      },
+      {
+        "id": "dim-sum-4",
+        "en": "Chinese Cruller · Large",
+        "zh": "中式油條（大）",
+        "pack": "100 g × 3 pieces/bag · 14 bags/case",
+        "caseCount": "42"
+      },
+      {
+        "id": "dim-sum-5",
+        "en": "Udon Noodles",
+        "zh": "烏冬麵",
+        "pack": "200 g × 3 packs/bag · 20 bags/case",
+        "caseCount": "60"
+      }
+    ]
+  },
+  {
+    "id": "spring-rolls",
+    "en": "Spring Rolls",
+    "zh": "春卷系列",
+    "sourcePage": 4,
+    "items": [
+      {
+        "id": "spring-rolls-1",
+        "en": "Vegetable Spring Roll",
+        "zh": "什錦素菜春卷",
+        "pack": "25 g × 20 pieces/bag · 20 bags/case",
+        "caseCount": "400"
+      },
+      {
+        "id": "spring-rolls-2",
+        "en": "Vegetable Spring Roll · Large",
+        "zh": "什錦素菜春卷 L",
+        "pack": "42.6 g × 10 pieces/bag · 20 bags/case",
+        "caseCount": "200"
+      },
+      {
+        "id": "spring-rolls-3",
+        "en": "Pre-Fried Vegetable Spring Roll",
+        "zh": "預炸什錦素菜春卷",
+        "pack": "25 g × 20 pieces/bag · 20 bags/case",
+        "caseCount": "400"
+      },
+      {
+        "id": "spring-rolls-4",
+        "en": "Pre-Fried Flat Vegetable Spring Roll",
+        "zh": "預炸素三鮮扁春卷",
+        "pack": "40 g × 8 pieces/bag · 40 bags/case",
+        "caseCount": "320"
+      }
+    ]
+  },
+  {
+    "id": "mala-cake",
+    "en": "Mala Cake",
+    "zh": "馬拉糕",
+    "sourcePage": 4,
+    "items": [
+      {
+        "id": "mala-cake-1",
+        "en": "Brown Sugar",
+        "zh": "紅糖馬拉糕",
+        "pack": "100 g × 12 pieces/bag · 8 bags/case",
+        "caseCount": "96"
+      },
+      {
+        "id": "mala-cake-2",
+        "en": "Pumpkin",
+        "zh": "南瓜馬拉糕",
+        "pack": "100 g × 12 pieces/bag · 8 bags/case",
+        "caseCount": "96"
+      }
+    ]
+  }
+]

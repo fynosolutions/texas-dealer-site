@@ -1,0 +1,25 @@
+{
+  "name": "texas-dealer-preview",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "astro dev",
+    "start": "node server.mjs",
+    "test": "node --test tests/contact.test.mjs tests/mail.test.mjs tests/contact-http.test.mjs tests/pages.test.mjs tests/sms.test.mjs",
+    "check:cloudflare": "wrangler pages functions build --outdir artifacts/cloudflare --compatibility-date 2026-10-01 --compatibility-flags nodejs_compat",
+    "dev:cloudflare": "wrangler pages dev dist",
+    "check": "python scripts/check.py",
+    "test:browser": "node tests/run-browser.mjs"
+  },
+  "dependencies": {
+    "@astrojs/tailwind": "^5.1.4",
+    "astro": "^4.16.18",
+    "tailwindcss": "^3.4.17"
+  },
+  "devDependencies": {
+    "playwright": "^1.64.1",
+    "wrangler": "^4.156.0"
+  }
+}

@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProductsPage from '../components/ProductsPage.astro';
+import { site } from '../data/site';
+const locale = 'en';
+---
+<BaseLayout locale={locale} title={site.legalName[locale] + ' — Products & Specifications'} currentPath="/products/">
+  <ProductsPage locale={locale} />
+</BaseLayout>

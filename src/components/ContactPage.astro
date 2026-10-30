@@ -1,0 +1,94 @@
+---
+import { tr, company, type Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const isZh = locale === 'zh-Hant';
+const telHref = `tel:${company.phone.replace(/[^0-9+]/g, '')}`;
+---
+
+
+<section class="bg-white text-brand-ink">
+  <div class="container-x pt-10 sm:pt-14 pb-12 sm:pb-16">
+    <div class="flex items-start gap-5 mb-2">
+      <span class="mt-4 h-2.5 w-2.5 rounded-full bg-brand-red flex-none" aria-hidden="true"></span>
+      <h1 class="display-hx text-bal text-[clamp(34px,3.8vw,56px)]">{tr('contact.hero.title', locale)}</h1>
+    </div>
+    <p class="display-hx text-bal text-[clamp(22px,2.4vw,36px)] text-brand-grey-sub max-w-[38ch]">
+      {tr('contact.hero.body', locale)}
+    </p>
+  </div>
+</section>
+
+
+<section class="bg-white text-brand-ink">
+  <div class="container-x pb-20 sm:pb-28">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10">
+      <div class="lg:col-span-7">
+        
+        <form
+          class="space-y-5"
+          data-cf-form method="post" action="/api/contact"
+          data-msg-sending={tr('contact.form.sending', locale)}
+          data-msg-success={tr('contact.form.success', locale)}
+          data-msg-error={tr('contact.form.error', locale)}
+        >
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="hidden" />
+          <input type="hidden" name="_source" value="dealer-contact" />
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <label for="name" class="block text-[13px] text-brand-ink/70 mb-1.5">{tr('contact.form.name', locale)} *</label>
+              <input id="name" name="name" maxlength="100" required type="text" autocomplete="name" class="w-full border border-black/20 px-3.5 py-2.5 text-[15px] focus:border-brand-red focus:outline-none" />
+            </div>
+            <div>
+              <label for="company" class="block text-[13px] text-brand-ink/70 mb-1.5">{tr('contact.form.company', locale)}</label>
+              <input id="company" name="company" maxlength="200" type="text" autocomplete="organization" class="w-full border border-black/20 px-3.5 py-2.5 text-[15px] focus:border-brand-red focus:outline-none" />
+            </div>
+            <div>
+              <label for="email" class="block text-[13px] text-brand-ink/70 mb-1.5">{tr('contact.form.email', locale)} *</label>
+              <input id="email" name="email" maxlength="254" required type="email" autocomplete="email" inputmode="email" class="w-full border border-black/20 px-3.5 py-2.5 text-[15px] focus:border-brand-red focus:outline-none" />
+            </div>
+            <div>
+              <label for="phone" class="block text-[13px] text-brand-ink/70 mb-1.5">{tr('contact.form.phone', locale)}</label>
+              <input id="phone" name="phone" maxlength="40" type="tel" autocomplete="tel" inputmode="tel" class="w-full border border-black/20 px-3.5 py-2.5 text-[15px] focus:border-brand-red focus:outline-none" />
+            </div>
+          </div>
+          <div>
+            <label for="message" class="block text-[13px] text-brand-ink/70 mb-1.5">{tr('contact.form.message', locale)} *</label>
+            <textarea id="message" name="message" maxlength="5000" required rows="6" class="w-full border border-black/20 px-3.5 py-2.5 text-[15px] focus:border-brand-red focus:outline-none resize-y"></textarea>
+          </div>
+          <button type="submit" class="inline-flex items-center justify-center rounded-full bg-brand-red text-white px-10 py-3 text-[15px] font-medium hover:bg-brand-red-dark transition-colors disabled:opacity-60">
+            {tr('contact.form.submit', locale)} →
+          </button>
+          <p data-cf-status class="text-[13px] data-[state=error]:text-brand-red text-brand-ink/55" role="status" aria-live="polite"></p>
+          <p class="text-[13px] text-brand-ink/55">{tr('contact.form.note', locale)}</p>
+        </form>
+      </div>
+
+      <aside class="lg:col-span-5">
+        <div class="border border-black/10 bg-white text-brand-ink p-8 sm:p-10">
+          <div class="flex items-start gap-4 mb-6">
+            <span class="mt-2.5 h-2 w-2 rounded-full bg-brand-red flex-none" aria-hidden="true"></span>
+            <h3 class="display-hx text-[24px]">{isZh ? '銷售聯絡資訊' : 'Sales Contact'}</h3>
+          </div>
+          <address class="not-italic space-y-4 text-[15px] text-brand-ink/80">
+            {company.address && <div>{company.address}</div>}
+            <div>
+              <a href={company.phone ? telHref : undefined} aria-disabled={!company.phone || undefined} class="hover:text-brand-red transition-colors">TEL: {company.phone || (isZh ? "[電話待補]" : "[Phone to be added]")}</a>
+            </div>
+            <div>
+              <a href={company.email ? `mailto:${company.email || (isZh ? "[電郵待補]" : "[Email to be added]")}` : undefined} aria-disabled={!company.email || undefined} class="underline underline-offset-4 hover:text-brand-red transition-colors break-all">{company.email || (isZh ? "[電郵待補]" : "[Email to be added]")}</a>
+            </div>
+          </address>
+          <div class="mt-8 pt-6 border-t border-black/10 text-[12px] tracking-[0.16em] uppercase text-brand-ink/45">
+            {isZh ? "服務德州餐飲店" : "Serving Texas Restaurants"}
+          </div>
+        </div>
+
+      </aside>
+    </div>
+  </div>
+</section>

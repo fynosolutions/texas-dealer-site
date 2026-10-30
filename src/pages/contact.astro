@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactPage from '../components/ContactPage.astro';
+import { site } from '../data/site';
+const locale = 'en';
+---
+<BaseLayout locale={locale} title={site.legalName[locale] + ' — Contact & Pricing'} currentPath="/contact/">
+  <ContactPage locale={locale} />
+</BaseLayout>

@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+  body {
+    overflow-x: hidden;
+    min-width: 320px;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply uppercase tracking-eyebrow text-[11px] font-semibold;
+  }
+  .container-x {
+    @apply max-w-8xl mx-auto px-6 md:px-10 lg:px-16;
+  }
+  .display-serif {
+    @apply font-serif font-medium leading-[1.05];
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center bg-brand-red text-white px-7 py-3.5 font-medium tracking-wide transition-all hover:bg-brand-red-dark focus:outline-none focus:ring-2 focus:ring-brand-red focus:ring-offset-2 focus:ring-offset-brand-cream;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center border border-brand-ink text-brand-ink px-7 py-3.5 font-medium tracking-wide transition-all hover:bg-brand-ink hover:text-white focus:outline-none focus:ring-2 focus:ring-brand-ink focus:ring-offset-2;
+  }
+  .btn-on-dark {
+    @apply inline-flex items-center justify-center border border-white/40 text-white px-7 py-3.5 font-medium tracking-wide transition-all hover:bg-white hover:text-brand-ink;
+  }
+  /* v2 "Factory Cinematic" display type — Helvetica-family grotesque, regular weight */
+  .display-hx {
+    @apply font-sans font-normal leading-[1.04] tracking-[-0.01em];
+  }
+  /* prevent widows / awkward wraps on display lines (works on TW <3.4) */
+  .text-bal {
+    text-wrap: balance;
+  }
+}
+
+/* v2 hero Ken Burns placeholder (until real video is provided) */
+@keyframes kenburns {
+  from { transform: scale(1); }
+  to { transform: scale(1.07); }
+}
+.hero-kenburns {
+  animation: kenburns 22s ease-out forwards;
+}
+
+/* v2 reveal-on-scroll */
+.rev-ready {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.rev-in {
+  opacity: 1;
+  transform: none;
+}
+/* stagger steps for sibling .rev elements revealed together */
+.rev-d1 { transition-delay: 120ms; }
+.rev-d2 { transition-delay: 240ms; }
+
+.rev:not(.rev-ready) { opacity: 1; transform: none; }
+a[aria-disabled="true"] { cursor: default; opacity: .65; pointer-events: none; }
+:focus-visible { outline: 2px solid #b91c1c; outline-offset: 5px; }
+.hero-image { object-position: 50% 45%; }
+@media (max-width: 1100px) { .dealer-header > div:first-child { justify-content: flex-start; padding-right: 90px; } }
+@media (max-width: 639px) {
+  .dealer-header > div:first-child { padding-left: 12px; padding-right: 68px; }
+  .language-switch { right: 10px; }
+  .hero-image { object-position: 58% center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-kenburns { animation: none; }
+  .rev { opacity: 1; transform: none; transition: none; }
+}

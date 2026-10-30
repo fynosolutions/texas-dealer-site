@@ -1,0 +1,50 @@
+---
+import { tr, type Locale } from '../i18n/ui';
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const zh = locale === 'zh-Hant';
+const prefix = zh ? '/zh-Hant' : '';
+const steps = zh
+  ? ['聯絡銷售', '確認產品與試樣需求', '獲取報價', '確認訂單', '安排配送', '後續補貨']
+  : ['Contact sales', 'Discuss products & samples', 'Receive a quote', 'Confirm your order', 'Arrange delivery', 'Plan your next order'];
+// Reuse only the illustrations as CSS sprite regions; former labels are outside each viewport.
+const illustrationX = [38, 331, 625, 918, 1212, 1506];
+---
+<section class="bg-[#F7F0E1] text-brand-ink" data-journey>
+  <div class="container-x py-16 sm:py-24">
+    <h2 class="display-hx text-[34px] sm:text-[52px] text-center">{zh ? '合作流程' : 'How We Work Together'}</h2>
+    <ol class="partnership-steps mt-10 sm:mt-14">
+      {steps.map((step, i) => <li>
+        <span class="step-art" style={{backgroundPosition: `${illustrationX[i] / (1774 - 244) * 100}% ${350 / (887 - 250) * 100}%`}} aria-hidden="true"></span>
+        <div class="step-copy">
+          <span class="step-number">0{i + 1}</span>
+          <span class="step-title">{step}</span>
+          {i === 1 && <span class="step-optional">{zh ? '試樣為可選需求' : 'Samples are optional'}</span>}
+        </div>
+      </li>)}
+    </ol>
+    <p class="mt-8 text-center text-[14px] leading-relaxed text-brand-ink/70 max-w-3xl mx-auto">
+      {zh ? '試樣品種、數量及費用由銷售確認；如有費用，將於安排前取得您的確認。配送費與預計到貨時間於報價時確認。' : 'Sales will confirm sample products, quantities and any fees, with your agreement before samples are arranged. Delivery fees and estimated arrival are confirmed with your quote.'}
+    </p>
+    <div class="mt-8 flex justify-center">
+      <a href={`${prefix}/contact/`} class="btn-primary rounded-full">{tr('journey.cta', locale)} →</a>
+    </div>
+  </div>
+</section>
+<style>
+  .partnership-steps { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 20px; }
+  .partnership-steps li { min-width: 0; text-align: center; }
+  .step-art { display: block; width: 100%; max-width: 160px; margin: 0 auto 16px; border-radius: 50%; aspect-ratio: 244 / 250; background-image: url("/assets/journey-zh-Hant.jpg"); background-size: 727.04918% 354.8%; background-repeat: no-repeat; }
+  .step-number { display: block; color: #b91c1c; font-size: 18px; margin-bottom: 8px; }
+  .step-title { display: block; font-size: 17px; line-height: 1.5; font-weight: 500; }
+  .step-optional { display: block; font-size: 13px; line-height: 1.5; margin-top: 6px; color: #665b49; }
+  @media (max-width: 1023px) { .partnership-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 20px; } }
+  @media (max-width: 639px) {
+    .partnership-steps { grid-template-columns: 1fr; gap: 20px; }
+    .partnership-steps li { display: flex; align-items: center; gap: 20px; text-align: left; }
+    .step-art { width: 88px; flex: 0 0 88px; margin: 0; }
+    .step-copy { min-width: 0; }
+    .step-number { margin-bottom: 3px; font-size: 15px; }
+    .step-title { font-size: 18px; }
+  }
+</style>

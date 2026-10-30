@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductsPage from '../../components/ProductsPage.astro';
+import { site } from '../../data/site';
+const locale = 'zh-Hant';
+---
+<BaseLayout locale={locale} title={site.legalName[locale] + ' — 產品與規格'} currentPath="/zh-Hant/products/">
+  <ProductsPage locale={locale} />
+</BaseLayout>

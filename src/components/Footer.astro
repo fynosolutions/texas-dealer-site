@@ -1,0 +1,96 @@
+---
+import { tr, company, type Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  hideForm?: boolean;
+}
+
+const { locale, hideForm = false } = Astro.props;
+const isZh = locale === 'zh-Hant';
+const prefix = isZh ? '/zh-Hant' : '';
+const telHref = `tel:${company.phone.replace(/[^0-9+]/g, '')}`;
+---
+
+
+<footer class="bg-white text-brand-ink">
+  <div class="container-x py-14 sm:py-20">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
+      
+      {!hideForm && <div class:list={['lg:col-span-5 lg:pr-10 lg:border-r lg:border-black/10', hideForm && 'hidden']}>
+        <h2 class="display-hx text-[26px] sm:text-[30px] mb-7">{tr('home2.footer.form.title', locale)}</h2>
+        
+        <form
+          class="space-y-4"
+          data-cf-form method="post" action="/api/contact"
+          data-msg-sending={tr('contact.form.sending', locale)}
+          data-msg-success={tr('contact.form.success', locale)}
+          data-msg-error={tr('contact.form.error', locale)}
+        >
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="hidden" />
+          <input type="hidden" name="_source" value="dealer-footer" />
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="f-name" class="block text-[13px] text-brand-ink/70 mb-1.5">{tr('contact.form.name', locale)} *</label>
+              <input id="f-name" name="name" maxlength="100" required type="text" autocomplete="name" class="w-full border border-black/20 px-3.5 py-2.5 text-[15px] focus:border-brand-red focus:outline-none" />
+            </div>
+            <div>
+              <label for="f-company" class="block text-[13px] text-brand-ink/70 mb-1.5">{tr('contact.form.company', locale)}</label>
+              <input id="f-company" name="company" maxlength="200" type="text" autocomplete="organization" class="w-full border border-black/20 px-3.5 py-2.5 text-[15px] focus:border-brand-red focus:outline-none" />
+            </div>
+            <div>
+              <label for="f-email" class="block text-[13px] text-brand-ink/70 mb-1.5">{tr('contact.form.email', locale)} *</label>
+              <input id="f-email" name="email" maxlength="254" required type="email" autocomplete="email" inputmode="email" class="w-full border border-black/20 px-3.5 py-2.5 text-[15px] focus:border-brand-red focus:outline-none" />
+            </div>
+            <div>
+              <label for="f-phone" class="block text-[13px] text-brand-ink/70 mb-1.5">{tr('contact.form.phone', locale)}</label>
+              <input id="f-phone" name="phone" maxlength="40" type="tel" autocomplete="tel" inputmode="tel" class="w-full border border-black/20 px-3.5 py-2.5 text-[15px] focus:border-brand-red focus:outline-none" />
+            </div>
+          </div>
+          <div>
+            <label for="f-message" class="block text-[13px] text-brand-ink/70 mb-1.5">{tr('contact.form.message', locale)} *</label>
+            <textarea id="f-message" name="message" maxlength="5000" required rows="4" class="w-full border border-black/20 px-3.5 py-2.5 text-[15px] focus:border-brand-red focus:outline-none resize-y"></textarea>
+          </div>
+          <button type="submit" class="inline-flex items-center justify-center rounded-md bg-brand-red text-white px-10 py-2.5 text-[15px] font-medium hover:bg-brand-red-dark transition-colors disabled:opacity-60">
+            {tr('contact.form.submit', locale)}
+          </button>
+          <p data-cf-status class="text-[12px] data-[state=error]:text-brand-red text-brand-ink/50" role="status" aria-live="polite"></p>
+          <p class="text-[12px] text-brand-ink/50">{tr('contact.form.note', locale)}</p>
+        </form>
+      </div>}
+
+      
+      <div class:list={[hideForm ? 'lg:col-span-5' : 'lg:col-span-3 lg:pl-4', 'pt-1']}>
+        <ul class="text-[15px] text-brand-ink/70 space-y-2.5">
+          <li><a href={`${prefix}/`} class="hover:text-brand-red transition-colors">{tr('nav.home', locale)}</a></li>
+          <li><a href={`${prefix}/products/`} class="hover:text-brand-red transition-colors">{tr('nav.products', locale)}</a></li>
+          <li><a href={`${prefix}/wholesale/`} class="hover:text-brand-red transition-colors">{tr('nav.wholesale', locale)}</a></li>
+          <li><a href={`${prefix}/contact/`} class="hover:text-brand-red transition-colors">{tr('nav.contact', locale)}</a></li>
+        </ul>
+        <div class="mt-6 text-[12px] tracking-[0.14em] uppercase text-brand-ink/45">
+          {isZh ? "服務德州餐飲店" : "Serving Texas Restaurants"}
+        </div>
+      </div>
+
+      
+      <div class="lg:col-span-4 pt-1">
+        <address class="not-italic text-[15px] text-brand-ink/80 leading-relaxed space-y-1.5">
+          <div>
+            <a href={company.email ? `mailto:${company.email || (isZh ? "[電郵待補]" : "[Email to be added]")}` : undefined} aria-disabled={!company.email || undefined} class="underline underline-offset-4 hover:text-brand-red transition-colors break-all">{company.email || (isZh ? "[電郵待補]" : "[Email to be added]")}</a>
+          </div>
+          <div><a href={company.phone ? telHref : undefined} aria-disabled={!company.phone || undefined} class="hover:text-brand-red transition-colors">TEL: {company.phone || (isZh ? "[電話待補]" : "[Phone to be added]")}</a></div>
+          {company.address && <div>{company.address}</div>}
+        </address>
+        <div class="mt-6 flex items-center gap-3">
+          <img src="/assets/brand-placeholder.svg" alt={isZh ? "Logo 待補" : "Logo pending"} class="h-9 w-9 object-contain" width="36" height="36" />
+          <span class="text-[13px] text-brand-ink/60">{tr('footer.brand.title', locale)}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 pt-6 border-t border-black/10 flex flex-col sm:flex-row gap-2 justify-between text-[12px] text-brand-ink/45">
+      <span>{tr('footer.rights', locale)}</span>
+      <span>{company.website || (isZh ? "[網域待補]" : "[Domain to be added]")}</span>
+    </div>
+  </div>
+</footer>

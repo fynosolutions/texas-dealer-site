@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WholesalePage from '../../components/WholesalePage.astro';
+import { site } from '../../data/site';
+const locale = 'zh-Hant';
+---
+<BaseLayout locale={locale} title={site.legalName[locale] + ' — 批發與配送'} currentPath="/zh-Hant/wholesale/">
+  <WholesalePage locale={locale} />
+</BaseLayout>

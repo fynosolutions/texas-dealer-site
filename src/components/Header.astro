@@ -1,0 +1,159 @@
+---
+import { tr, company, type Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  currentPath: string;
+}
+
+const { locale, currentPath } = Astro.props;
+const isZh = locale === 'zh-Hant';
+const prefix = isZh ? '/zh-Hant' : '';
+const otherLangPath = (() => {
+  let stripped = currentPath.replace(/^\/zh-Hant/, '');
+  if (stripped === '') stripped = '/';
+  return isZh ? stripped : `/zh-Hant${stripped === '/' ? '' : stripped}`;
+})();
+
+const nav = [
+  { href: `${prefix}/`, label: tr('nav.home', locale), match: 'home' },
+  { href: `${prefix}/products/`, label: tr('nav.products', locale), match: 'products' },
+  { href: `${prefix}/wholesale/`, label: tr('nav.wholesale', locale), match: 'wholesale' },
+  { href: `${prefix}/contact/`, label: tr('nav.contact', locale), match: 'contact' },
+];
+
+function isActive(match: string): boolean {
+  const path = currentPath.replace(/^\/zh-Hant/, '');
+  if (match === 'home') return path === '/' || path === '';
+  return path.startsWith(`/${match}`);
+}
+---
+
+
+<header class="dealer-header fixed inset-x-0 top-4 sm:top-6 z-50 pointer-events-none">
+  <div class="flex justify-center px-4">
+    <div class="pointer-events-auto flex items-center gap-1 sm:gap-2 rounded-full bg-[#EDEDEB]/90 backdrop-blur-md shadow-[0_2px_14px_rgba(0,0,0,0.18)] pl-3 pr-2 py-2 max-w-full">
+      <a href={`${prefix}/`} class="flex items-center gap-2 pr-2 sm:pr-4 sm:border-r sm:border-black/10" aria-label={company.legalName[locale]}>
+        <img
+          src="/assets/brand-placeholder.svg"
+          alt={isZh ? "Logo 待補" : "Logo pending"}
+          class="h-8 w-8 rounded-full object-contain flex-none"
+          width="32"
+          height="32"
+        />
+        <span class="hidden md:block text-[12px] font-medium tracking-[0.14em] uppercase text-brand-ink/80 whitespace-nowrap">
+          {company.shortName[locale]}
+        </span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-1">
+        {nav.map((item) => (
+          <a
+            href={item.href} aria-current={isActive(item.match) ? "page" : undefined}
+            class={`text-[13px] tracking-wide rounded-full px-4 py-2 transition-colors whitespace-nowrap ${
+              isActive(item.match)
+                ? 'bg-brand-salmon text-white'
+                : 'text-brand-ink/80 hover:bg-black/5'
+            }`}
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+
+      <a
+        href={`${prefix}/contact/`}
+        class="inline-flex items-center justify-center rounded-full bg-brand-red text-white px-3.5 sm:px-5 py-2 text-[12px] sm:text-[13px] font-medium tracking-wide hover:bg-brand-red-dark transition-colors whitespace-nowrap ml-1"
+      >
+        {tr('nav.requestSamples', locale)}
+      </a>
+
+      <button
+        type="button"
+        class="lg:hidden inline-flex items-center justify-center min-h-[40px] min-w-[40px] rounded-full text-brand-ink hover:bg-black/5"
+        aria-label="Menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        data-mobile-toggle
+      >
+        <svg class="block" data-icon-open width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        <svg class="hidden" data-icon-close width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+          <line x1="6" y1="18" x2="18" y2="6"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  
+  <a
+    href={otherLangPath}
+    class="language-switch pointer-events-auto inline-flex items-center absolute right-3 sm:right-6 top-0 rounded-sm bg-black/45 backdrop-blur px-2.5 sm:px-4 py-2 sm:py-2.5 text-[11px] font-semibold tracking-[0.18em] uppercase text-white/90 hover:bg-black/60 transition-colors"
+    aria-label={isZh ? 'Switch to English' : '切換到繁體中文'}
+  >
+    {isZh ? 'EN' : '繁體'}
+  </a>
+
+  
+  <div
+    id="mobile-menu"
+    class="pointer-events-auto lg:hidden hidden mx-4 mt-3 rounded-2xl bg-white shadow-xl overflow-hidden"
+    data-mobile-menu
+  >
+    <nav class="py-2 flex flex-col">
+      {nav.map((item) => (
+        <a
+          href={item.href} aria-current={isActive(item.match) ? "page" : undefined}
+          class={`flex items-center min-h-[48px] px-6 text-[15px] border-b border-black/5 last:border-b-0 ${
+            isActive(item.match) ? 'text-brand-red font-medium' : 'text-brand-ink/85'
+          }`}
+        >
+          {item.label}
+        </a>
+      ))}
+      <a href={otherLangPath} class="flex items-center min-h-[48px] px-6 text-[13px] tracking-[0.14em] uppercase text-brand-ink/60">
+        {isZh ? 'EN' : '繁體中文'}
+      </a>
+    </nav>
+    <div class="px-6 pb-5">
+      <a
+        href={`${prefix}/contact/`}
+        class="inline-flex w-full items-center justify-center rounded-full bg-brand-red text-white px-5 py-3 text-sm font-medium tracking-wide"
+      >
+        {tr('nav.requestSamples', locale)}
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const btn = document.querySelector('[data-mobile-toggle]') as HTMLButtonElement | null;
+  const menu = document.querySelector('[data-mobile-menu]') as HTMLElement | null;
+  const iconOpen = btn?.querySelector('[data-icon-open]') as SVGElement | null;
+  const iconClose = btn?.querySelector('[data-icon-close]') as SVGElement | null;
+
+  function setOpen(open: boolean) {
+    if (!btn || !menu) return;
+    btn.setAttribute('aria-expanded', String(open));
+    menu.classList.toggle('hidden', !open);
+    iconOpen?.classList.toggle('hidden', open);
+    iconOpen?.classList.toggle('block', !open);
+    iconClose?.classList.toggle('hidden', !open);
+    iconClose?.classList.toggle('block', open);
+  }
+
+  btn?.addEventListener('click', () => {
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+    setOpen(!isOpen);
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1024) setOpen(false);
+  });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && btn?.getAttribute('aria-expanded') === 'true') { setOpen(false); btn.focus(); } });
+  menu?.addEventListener('click', (e) => { if ((e.target as Element).closest('a')) setOpen(false); });
+</script>

@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContactPage from '../../components/ContactPage.astro';
+import { site } from '../../data/site';
+const locale = 'zh-Hant';
+---
+<BaseLayout locale={locale} title={site.legalName[locale] + ' — 聯絡與報價'} currentPath="/zh-Hant/contact/">
+  <ContactPage locale={locale} />
+</BaseLayout>

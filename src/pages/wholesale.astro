@@ -1,0 +1,9 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WholesalePage from '../components/WholesalePage.astro';
+import { site } from '../data/site';
+const locale = 'en';
+---
+<BaseLayout locale={locale} title={site.legalName[locale] + ' — Wholesale & Delivery'} currentPath="/wholesale/">
+  <WholesalePage locale={locale} />
+</BaseLayout>
