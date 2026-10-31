@@ -12,13 +12,19 @@ const compactPack = (pack: string) => pack
   .replace(/ (pieces|packs)\/bag/g, '/bag');
 const compactCount = (item: {pack: string; caseCount: string}) =>
   item.caseCount.replace('Approx. ', '≈') + (item.pack.includes('packs/bag') ? ' packs/case' : ' pcs/case');
-const note = {
-  k: { zh: 'MINIMUM / DELIVERY', en: 'MINIMUM / DELIVERY' },
-  v: {
-    zh: '請提供送貨城市、ZIP Code、所需產品與預計箱數，由銷售確認配送範圍及起訂要求；配送費與預計到貨時間於報價時確認。',
-    en: 'Share your delivery city, ZIP Code, products and expected case quantities to confirm coverage and order minimums. Delivery fees and estimated arrival are confirmed with your quote.',
-  },
-};
+// Chinese pages show Chinese units; numbers stay identical to the PDF.
+const unitsZh = (s: string) => !zh ? s : s
+  .replace(/ bags\/case/g, '袋/箱').replace(/ pcs\/case/g, '個/箱').replace(/ packs\/case/g, '包/箱')
+  .replace(/\/pc\b/g, '/個').replace(/\/bag\b/g, '/袋');
+type Cat = (typeof products)[number] & { sharedImage?: boolean };
+// Two columns on wide screens: split the list once where the estimated heights are closest,
+// so reading order stays the same when the columns stack on narrow screens.
+const cats = products as Cat[];
+const est = (c: Cat) => 56 + (c.sharedImage ? 150 + c.items.length * 76 : c.items.length * 126);
+const total = cats.reduce((n, c) => n + est(c), 0);
+let split = 1, best = Infinity, run = 0;
+cats.forEach((c, i) => { run += est(c); const gap = Math.abs(total - 2 * run); if (gap < best) { best = gap; split = i + 1; } });
+const columns = [cats.slice(0, split), cats.slice(split)];
 ---
 
 <div class="mb-8" data-category-navigation>
@@ -29,42 +35,52 @@ const note = {
       {products.map(cat => <option value={`category-${cat.id}`}>{t(cat)}</option>)}
     </select>
   </div>
-  <nav class="hidden lg:flex flex-wrap gap-2" aria-label={zh ? '產品品類' : 'Product categories'}>
-    {products.map(cat => <a href={`#category-${cat.id}`} class="rounded-full border border-black/15 px-4 py-2 text-[14px] hover:border-brand-red hover:text-brand-red">{t(cat)}</a>)}
+  <nav class="hidden lg:flex flex-wrap gap-1.5" aria-label={zh ? '產品品類' : 'Product categories'}>
+    {products.map(cat => <a href={`#category-${cat.id}`} class="rounded-full border border-black/15 px-3 py-1.5 text-[13px] hover:border-brand-red hover:text-brand-red">{t(cat)}</a>)}
   </nav>
   <noscript><ul class="lg:hidden flex flex-wrap gap-3 mt-4">{products.map(cat => <li><a href={`#category-${cat.id}`} class="text-brand-red underline">{t(cat)}</a></li>)}</ul></noscript>
   <p class="mt-5 text-[13px] leading-relaxed text-brand-ink/65">{zh
-    ? '規格說明：pc / pcs＝個；bag＝袋；pack＝包；case＝箱；≈＝約數。具體包裝以產品標籤為準。'
-    : 'Units: pc / pcs = pieces; bag = bag; pack = pack; case = case; ≈ = approximate quantity. Refer to the product label for packaging details.'}</p>
+    ? '≈＝約數。具體包裝以產品標籤為準。'
+    : 'pc = piece · ≈ = approximate. Refer to the product label for packaging details.'}</p>
 </div>
 
   <div data-product-catalog class="catalog-columns">
-      {products.map((cat) => (
+    {columns.map((col) => (
+      <div class="catalog-col">
+      {col.map((cat) => (
         <div id={`category-${cat.id}`} tabindex="-1" class="catalog-card bg-white border border-brand-ink/10 shadow-sm">
-          <div class="bg-neutral-100 border-l-4 border-brand-red px-4 py-3">
+          <div class="bg-neutral-100 border-l-4 border-brand-red px-5 py-3.5">
             <h3 class="font-sans text-[18px] text-brand-ink font-semibold">{t(cat)}</h3>
           </div>
+          {cat.sharedImage && <div class="catalog-hero"><img src={`/assets/products/${cat.items[0].id}.jpg`} alt={t(cat)} width="240" height="180" loading="lazy" decoding="async" /></div>}
           <ul>
             {cat.items.map((item) => (
-              <li data-product-id={item.id} class="catalog-row border-t border-brand-ink/5 first:border-t-0">
-                <img src={`/assets/products/${item.id}.jpg`} alt="" width="72" height="56" loading="lazy" decoding="async" class="catalog-thumb" />
+              <li data-product-id={item.id} class:list={['catalog-row border-t border-brand-ink/5', !cat.sharedImage && 'has-thumb', !cat.sharedImage && 'first:border-t-0']}>
+                {!cat.sharedImage && <span class="catalog-thumb"><img src={`/assets/products/${item.id}.jpg`} alt="" width="120" height="90" loading="lazy" decoding="async" /></span>}
+                <div class="min-w-0">
                 <span class="catalog-name font-medium text-brand-ink">{t(item)}</span>
-                <div lang="en" class="catalog-spec text-brand-ink/70">
-                  <span data-pack aria-label={item.pack}>{compactPack(item.pack)}</span>
+                <div lang={zh ? 'zh-Hant' : 'en'} class="catalog-spec">
+                  <span data-pack aria-label={item.pack}>{unitsZh(compactPack(item.pack))}</span>
                   <span aria-hidden="true" class="text-brand-ink/30">·</span>
-                  <span data-case-count aria-label={'Case quantity: ' + item.caseCount}>{compactCount(item)}</span>
+                  <span data-case-count aria-label={'Case quantity: ' + item.caseCount}>{unitsZh(compactCount(item))}</span>
+                </div>
                 </div>
               </li>
             ))}
           </ul>
         </div>
       ))}
+      {col === columns[0] && <div class="catalog-aside hidden xl:block">
+        <span class="title-mark" aria-hidden="true"></span>
+        <h2 class="display-hx text-[28px] leading-[1.2] mb-3">{zh ? '免費試樣' : 'Free samples'}</h2>
+        <p class="text-[16px] leading-[1.7] text-brand-ink/75 mb-6 max-w-[40ch]">{zh ? '列出想試的品項與預計箱數，我們先寄樣品給後廚試做，再為您報批發價。' : 'List the items you want to try and your expected case quantities. We send samples for your kitchen to test, then quote wholesale pricing.'}</p>
+        <a href={zh ? '/zh-Hant/contact/' : '/contact/'} class="btn-primary rounded-full">{zh ? '索取試樣與報價' : 'Request samples & pricing'} →</a>
+      </div>}
+      </div>
+    ))}
   </div>
 
-<div class="mt-6 sm:mt-8 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-5 border border-black/15 bg-neutral-50 px-5 py-4">
-  <span class="text-[10px] font-bold tracking-eyebrow uppercase text-brand-red  flex-none">{t(note.k)}</span>
-  <span class="text-[15px] sm:text-base text-brand-ink/80 leading-relaxed font-medium">{t(note.v)}</span>
-</div>
+
 
 <script>
   document.querySelector<HTMLSelectElement>('#category-select')?.addEventListener('change', event => {
@@ -78,18 +94,28 @@ const note = {
 </script>
 
 <style>
-  .catalog-columns { column-count: 1; column-gap: 24px; }
-  .catalog-card { display: inline-block; width: 100%; margin-bottom: 24px; break-inside: avoid; vertical-align: top; scroll-margin-top: 120px; }
-  .catalog-row { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; padding: 10px 16px; }
-  .catalog-thumb { width: 72px; height: 56px; object-fit: cover; border-radius: 6px; background: #fff; flex: none; }
-  .catalog-name { font-size: 14px; line-height: 1.6; }
-  .catalog-spec { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: flex-end; gap: 0 5px; margin-left: auto; font-size: 12px; line-height: 1.6; text-align: right; }
-  [data-case-count] { white-space: nowrap; }
+  .catalog-columns { display: grid; grid-template-columns: 1fr; gap: 0 28px; align-items: start; }
+  .catalog-card { margin-bottom: 28px; scroll-margin-top: 120px; }
+  .catalog-aside { background: #F7F0E1; padding: 36px 32px; }
+  .catalog-hero { display: flex; justify-content: center; background: #F7F3EC; padding: 16px; }
+  .catalog-hero img { width: 240px; height: 180px; object-fit: contain; mix-blend-mode: multiply; }
+  .catalog-row { padding: 14px 16px; }
+  .catalog-row.has-thumb { display: grid; grid-template-columns: 80px 1fr; align-items: center; gap: 16px; }
+  .catalog-thumb { display: flex; align-items: center; justify-content: center; width: 80px; height: 60px; background: #F7F3EC; border-radius: 6px; overflow: hidden; }
+  .catalog-thumb img { max-width: 92%; max-height: 92%; object-fit: contain; mix-blend-mode: multiply; }
+  .catalog-name { display: block; font-size: 16px; line-height: 1.5; }
+  .catalog-spec { display: flex; flex-direction: column; margin-top: 6px; font-size: 14px; line-height: 1.6; color: rgb(26 26 26 / 0.8); font-variant-numeric: tabular-nums; }
+  .catalog-spec > span[aria-hidden] { display: none; }
+  [data-pack], [data-case-count] { white-space: nowrap; }
+  [data-case-count] { font-weight: 600; color: #1A1A1A; }
+  @media (min-width: 640px) {
+    .catalog-row { padding: 16px 22px; }
+    .catalog-row.has-thumb { grid-template-columns: 120px 1fr; gap: 22px; }
+    .catalog-thumb { width: 120px; height: 90px; }
+    .catalog-spec { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 0 6px; font-size: 14.5px; }
+    .catalog-spec > span[aria-hidden] { display: inline; }
+  }
   @media (min-width: 1280px) {
-    .catalog-columns { column-count: 2; }
-    .catalog-row { flex-wrap: nowrap; }
-    .catalog-name { flex: 1 1 auto; min-width: 0; }
-    .catalog-spec { white-space: nowrap; }
-    .catalog-spec { flex-wrap: nowrap; flex-shrink: 0; }
+    .catalog-columns { grid-template-columns: 1fr 1fr; }
   }
 </style>

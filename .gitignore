@@ -11,3 +11,5 @@ __pycache__/
 # Keep original source screenshots and factory captures local; retain test fixture.
 reference/*
 !reference/catalog-specs.json
+.vercel
+.env*

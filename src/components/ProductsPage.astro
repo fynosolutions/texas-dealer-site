@@ -15,11 +15,11 @@ const telHref = `tel:${company.phone.replace(/[^0-9+]/g, '')}`;
 
 <section class="bg-white text-brand-ink">
   <div class="container-x pt-10 sm:pt-14 pb-12 sm:pb-16">
-    <div class="flex items-start gap-5 mb-2">
-      <span class="mt-4 h-2.5 w-2.5 rounded-full bg-brand-red flex-none" aria-hidden="true"></span>
+    <div>
+      <span class="title-mark" aria-hidden="true"></span>
       <h1 class="display-hx text-bal text-[clamp(34px,3.8vw,56px)]">{tr('products.hero.title', locale)}</h1>
     </div>
-    <p class="text-[17px] sm:text-[18px] leading-[1.7] text-brand-ink/70 max-w-[68ch]">
+    <p class="page-lede lede-indent mt-5 text-bal">
       {tr('products.hero.body', locale)}
     </p>
   </div>

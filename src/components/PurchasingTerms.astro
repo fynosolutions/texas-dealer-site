@@ -7,7 +7,7 @@ const terms = ['t1', 't2', 't3', 't4'];
 <section class="bg-[#F7F6F4] text-brand-ink" data-purchasing-terms>
   <div class="container-x py-16 sm:py-24">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-      <h2 class="lg:col-span-4 display-hx text-bal text-[clamp(30px,3.4vw,48px)]">{tr('wholesale.terms.title', locale)}</h2>
+      <div class="lg:col-span-4"><span class="title-mark" aria-hidden="true"></span><h2 class="display-hx text-bal text-[clamp(30px,3.4vw,48px)]">{tr('wholesale.terms.title', locale)}</h2></div>
       <dl class="lg:col-span-8 divide-y divide-black/10 border-y border-black/10">
         {terms.map(key => <div class="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-6 py-5">
           <dt class="text-[14px] font-semibold text-brand-red">{tr(`wholesale.terms.${key}.label`, locale)}</dt>

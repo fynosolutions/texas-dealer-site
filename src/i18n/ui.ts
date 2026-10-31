@@ -49,7 +49,7 @@ export const t: Record<string, Record<Locale,string>> = {
     "zh-Hant": "五彩鍋貼"
   },
   "product.colorful.body": {
-    "en": "Five colors and five fillings, with 30 g pieces. An option for appetizer plates and set menus.",
+    "en": "Five colors and five fillings, with 30g pieces. An option for appetizer plates and set menus.",
     "zh-Hant": "五色造型、五種餡料，每顆 30g，適合前菜拼盤與套餐搭配。"
   },
   "product.soup.name": {
@@ -57,7 +57,7 @@ export const t: Record<string, Record<Locale,string>> = {
     "zh-Hant": "灌湯小籠包"
   },
   "product.soup.body": {
-    "en": "Pork or chicken, 36 g each. A soup dumpling option for dine-in and takeout menus.",
+    "en": "Pork or chicken, 36g each. A soup dumpling option for dine-in and takeout menus.",
     "zh-Hant": "豬肉／雞肉口味，每顆 36g，適合堂食及外賣菜單選品。"
   },
   "product.gyoza.name": {
@@ -137,24 +137,24 @@ export const t: Record<string, Record<Locale,string>> = {
     "zh-Hant": ""
   },
   "wholesale.offers.o2.title": {
-    "en": "5-Color Gyoza · Five Colors, Five Fillings",
+    "en": "5-Color Gyoza",
     "zh-Hant": "五彩鍋貼 · 五色五味"
   },
   "wholesale.offers.o2.body": {
-    "en": "Five colors and five fillings, with 30 g pieces, for appetizer platters and set menus.",
+    "en": "Five colors and five fillings, with 30g pieces, for appetizer platters and set menus.",
     "zh-Hant": "五種顏色、五種餡料，每顆 30g，為前菜拼盤和套餐提供更多搭配選擇。"
   },
   "wholesale.offers.o3.stat": {
-    "en": "Ask Sales",
-    "zh-Hant": "洽詢銷售"
+    "en": "",
+    "zh-Hant": ""
   },
   "wholesale.offers.o3.title": {
     "en": "Texas Delivery",
     "zh-Hant": "德州配送"
   },
   "wholesale.offers.o3.body": {
-    "en": "Share your delivery city, ZIP Code, products and expected case quantities. Sales will confirm coverage, order minimums, delivery fees and estimated arrival.",
-    "zh-Hant": "請提供送貨城市、ZIP Code、產品及預計箱數。銷售將確認配送範圍、起訂要求、配送費與預計到貨時間。"
+    "en": "Weekly delivery for Texas restaurants. Tell us your city and ZIP Code and we will confirm your route.",
+    "zh-Hant": "每週配送德州餐飲店。告訴我們城市與郵遞區號，我們確認配送路線。"
   },
   "wholesale.offers.trust.1": {
     "en": "Product selection",
@@ -182,7 +182,7 @@ export const t: Record<string, Record<Locale,string>> = {
   },
   "wholesale.terms.t1.value": {
     "en": "Provide your delivery city and ZIP Code so our team can confirm coverage.",
-    "zh-Hant": "請提供送貨城市與 ZIP Code，由銷售確認是否可配送。"
+    "zh-Hant": "請提供送貨城市與郵遞區號，由銷售確認是否可配送。"
   },
   "wholesale.terms.t2.label": {
     "en": "Order Minimums",
@@ -201,12 +201,12 @@ export const t: Record<string, Record<Locale,string>> = {
     "zh-Hant": "報價時一併確認配送費及預計到貨時間，訂單確認後安排配送。"
   },
   "wholesale.terms.t4.label": {
-    "en": "Samples (Optional)",
-    "zh-Hant": "試樣（可選）"
+    "en": "Free Samples",
+    "zh-Hant": "免費試樣"
   },
   "wholesale.terms.t4.value": {
-    "en": "Ask sales about sample products, quantities and any fees. If charges apply, we will explain them and obtain your agreement before arranging samples.",
-    "zh-Hant": "可向銷售洽詢試樣品種、數量與相關費用。如有費用，將在安排前告知並取得您的確認。"
+    "en": "Tell sales which products you would like to try. We send free samples so your kitchen can test them before the first order.",
+    "zh-Hant": "告訴銷售您想試的產品，我們提供免費試樣，讓後廚在首次下單前先試做。"
   },
   "contact.hero.title": {
     "en": "Let's Talk",

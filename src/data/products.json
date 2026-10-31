@@ -76,7 +76,8 @@
         "pack": "21 g/piece · 2 lb/bag · 8 bags/case",
         "caseCount": "Approx. 346"
       }
-    ]
+    ],
+    "sharedImage": true
   },
   {
     "id": "soup-dumplings",
@@ -156,7 +157,8 @@
         "pack": "17 g/piece · 1 lb/bag · 20 bags/case",
         "caseCount": "534"
       }
-    ]
+    ],
+    "sharedImage": true
   },
   {
     "id": "buns",

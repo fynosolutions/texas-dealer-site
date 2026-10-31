@@ -13,11 +13,11 @@ const telHref = `tel:${company.phone.replace(/[^0-9+]/g, '')}`;
 
 <section class="bg-white text-brand-ink">
   <div class="container-x pt-10 sm:pt-14 pb-12 sm:pb-16">
-    <div class="flex items-start gap-5 mb-2">
-      <span class="mt-4 h-2.5 w-2.5 rounded-full bg-brand-red flex-none" aria-hidden="true"></span>
+    <div>
+      <span class="title-mark" aria-hidden="true"></span>
       <h1 class="display-hx text-bal text-[clamp(34px,3.8vw,56px)]">{tr('contact.hero.title', locale)}</h1>
     </div>
-    <p class="display-hx text-bal text-[clamp(22px,2.4vw,36px)] text-brand-grey-sub max-w-[38ch]">
+    <p class="page-lede lede-indent mt-5 text-bal">
       {tr('contact.hero.body', locale)}
     </p>
   </div>
@@ -83,9 +83,11 @@ const telHref = `tel:${company.phone.replace(/[^0-9+]/g, '')}`;
               <a href={company.email ? `mailto:${company.email || (isZh ? "[電郵待補]" : "[Email to be added]")}` : undefined} aria-disabled={!company.email || undefined} class="underline underline-offset-4 hover:text-brand-red transition-colors break-all">{company.email || (isZh ? "[電郵待補]" : "[Email to be added]")}</a>
             </div>
           </address>
-          <div class="mt-8 pt-6 border-t border-black/10 text-[12px] tracking-[0.16em] uppercase text-brand-ink/45">
-            {isZh ? "服務德州餐飲店" : "Serving Texas Restaurants"}
-          </div>
+          <ul class="mt-8 pt-6 border-t border-black/10 space-y-3 text-[15px] leading-[1.6] text-brand-ink/80">
+            <li>{isZh ? '免費試樣，首次下單前先試做' : 'Free samples before your first order'}</li>
+            <li>{isZh ? '每週配送，服務德州餐飲店' : 'Weekly delivery to Texas restaurants'}</li>
+            <li>{isZh ? 'USDA · SQF · FDA 認證工廠出品' : 'USDA · SQF · FDA certified production'}</li>
+          </ul>
         </div>
 
       </aside>

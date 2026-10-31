@@ -47,8 +47,19 @@
   }
   /* v2 "Factory Cinematic" display type — Helvetica-family grotesque, regular weight */
   .display-hx {
-    @apply font-sans font-normal leading-[1.04] tracking-[-0.01em];
+    @apply font-sans font-normal leading-[1.08] tracking-[-0.01em];
   }
+  /* subtitle under a page/section title: body face, readable size, real line spacing */
+  .page-lede {
+    @apply font-sans text-[18px] sm:text-[20px] leading-[1.6] text-brand-ink/70 max-w-[58ch];
+  }
+  /* align text under a bulleted title with the title text (dot 10px + gap 20px) */
+  .lede-indent { margin-left: 0; }
+  /* Chinese pages: wrap at punctuation, never split a word */
+  :lang(zh-Hant) p, :lang(zh-Hant) h1, :lang(zh-Hant) h2, :lang(zh-Hant) h3 { word-break: keep-all; overflow-wrap: anywhere; }
+  /* short red rule above page and section titles */
+  /* mark above titles: the dumpling from the logo */
+  .title-mark { display: block; width: 40px; height: 22px; background: url("/assets/title-mark.svg") no-repeat left center / contain; margin-bottom: 16px; }
   /* prevent widows / awkward wraps on display lines (works on TW <3.4) */
   .text-bal {
     text-wrap: balance;
