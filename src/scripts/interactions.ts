@@ -23,6 +23,8 @@ const messages = zh ? {
   unknown: 'Notification status is uncertain; it may have been sent. Your entries are kept. Please do not immediately resubmit.',
   failed: 'Your request did not complete. Your entries are kept. Please try again later.',
 };
+// Shared lead hub (Cloudflare Worker). Change this one line to move leads to another backend.
+const FORM_ENDPOINT = 'https://feast-contact.fynosolutions.xyz/submit/yaya';
 document.querySelectorAll<HTMLFormElement>('form[data-cf-form]').forEach(form => {
   let busy = false;
   form.addEventListener('submit', async event => {
@@ -38,9 +40,9 @@ document.querySelectorAll<HTMLFormElement>('form[data-cf-form]').forEach(form =>
     const timer = setTimeout(() => controller.abort(), 15000);
     try {
       const data = Object.fromEntries(new FormData(form));
-      const response = await fetch('/api/contact', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data), signal:controller.signal});
+      const response = await fetch(FORM_ENDPOINT, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data), signal:controller.signal});
       const result = await response.json();
-      const state = !response.ok ? (result.error === 'not_configured' ? 'not_configured' : 'failed') : result.mock ? 'mock' : result.status;
+      const state = !response.ok ? (result.error === 'not_configured' ? 'not_configured' : 'failed') : result.mock ? 'mock' : result.success === true ? 'accepted' : result.status;
       const known = ['accepted','partial','unknown','failed','mock','not_configured'].includes(state);
       status.textContent = known ? messages[state as keyof typeof messages] : messages.failed;
       if (!response.ok || ['failed','partial','unknown'].includes(state)) status.dataset.state = 'error';
