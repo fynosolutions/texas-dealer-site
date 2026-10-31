@@ -3,6 +3,8 @@ import products from '../data/products.json';
 interface Props { locale: 'en' | 'zh-Hant'; }
 const {locale} = Astro.props;
 const zh = locale === 'zh-Hant';
+// Bump when product photos are replaced so browsers don't show cached old images.
+const IMG_V = '?v=20261031c';
 const t = (f: {zh: string; en: string}) => zh ? f.zh : f.en;
 // Compact presentation only: the underlying PDF specifications remain unchanged.
 const compactPack = (pack: string) => pack
@@ -54,15 +56,15 @@ const columns = [cats.slice(0, split), cats.slice(split)];
             <h3 class="font-sans text-[18px] text-brand-ink font-semibold">{t(cat)}</h3>
           </div>
           {cat.sharedImage && <div class="flavor-hero">
-            <img class="flavor-bg" src={`/assets/products/${cat.id}-plate.jpg`} alt={t(cat)} width={cat.id === 'mini-dumplings' ? 1352 : 1400} height={cat.id === 'mini-dumplings' ? 962 : 758} loading="lazy" decoding="async" />
+            <img class="flavor-bg" src={`/assets/products/${cat.id}-plate.jpg${IMG_V}`} alt={t(cat)} width={cat.id === 'mini-dumplings' ? 1352 : 1400} height={cat.id === 'mini-dumplings' ? 962 : 758} loading="lazy" decoding="async" />
             <ul class="flavor-row" aria-label={zh ? '內餡' : 'Fillings'}>
-              {cat.items.map((item) => <li><img src={`/assets/products/${item.id}-filling.jpg`} alt="" width="300" height="300" loading="lazy" decoding="async" /><span>{t(item).replace(' & ', ' &\u00a0')}</span></li>)}
+              {cat.items.map((item) => <li><img src={`/assets/products/${item.id}-filling.jpg${IMG_V}`} alt="" width="300" height="300" loading="lazy" decoding="async" /><span>{t(item).replace(' & ', ' &\u00a0')}</span></li>)}
             </ul>
           </div>}
           <ul>
             {cat.items.map((item) => (
               <li data-product-id={item.id} class:list={['catalog-row border-t border-brand-ink/5', !cat.sharedImage && 'has-thumb', !cat.sharedImage && 'first:border-t-0']}>
-                {!cat.sharedImage && <span class="catalog-thumb"><img src={`/assets/products/${item.id}.jpg`} alt="" width="200" height="154" loading="lazy" decoding="async" /></span>}
+                {!cat.sharedImage && <span class="catalog-thumb"><img src={`/assets/products/${item.id}.jpg${IMG_V}`} alt="" width="200" height="154" loading="lazy" decoding="async" /></span>}
                 <div class="min-w-0">
                 <span class="catalog-name font-medium text-brand-ink">{t(item).split(' · ').map((g, i) => i === 0 ? (g.length <= 16 ? g.replace(/ /g, '\u00a0') : g.replace(' & ', ' &\u00a0')) : <>{' '}<span class="whitespace-nowrap">{'· '}{g}</span></>)}</span>
                 <div lang={zh ? 'zh-Hant' : 'en'} class="catalog-spec">
