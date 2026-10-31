@@ -21,7 +21,7 @@ type Cat = (typeof products)[number] & { sharedImage?: boolean };
 // Two columns on wide screens: split the list once where the estimated heights are closest,
 // so reading order stays the same when the columns stack on narrow screens.
 const cats = products as Cat[];
-const est = (c: Cat) => 56 + (c.sharedImage ? 330 + c.items.length * 76 : c.items.length * 152);
+const est = (c: Cat) => 56 + (c.sharedImage ? 330 + c.items.length * 76 : c.items.length * 186);
 const total = cats.reduce((n, c) => n + est(c), 0);
 let split = 1, best = Infinity, run = 0;
 cats.forEach((c, i) => { run += est(c); const gap = Math.abs(total - 2 * run); if (gap < best) { best = gap; split = i + 1; } });
@@ -54,7 +54,7 @@ const columns = [cats.slice(0, split), cats.slice(split)];
             <h3 class="font-sans text-[18px] text-brand-ink font-semibold">{t(cat)}</h3>
           </div>
           {cat.sharedImage && <div class="flavor-hero">
-            <img class="flavor-bg" src={`/assets/products/${cat.id}-plate.jpg`} alt={t(cat)} width={cat.id === 'mini-dumplings' ? 1352 : 1400} height={cat.id === 'mini-dumplings' ? 962 : 756} loading="lazy" decoding="async" />
+            <img class="flavor-bg" src={`/assets/products/${cat.id}-plate.jpg`} alt={t(cat)} width={cat.id === 'mini-dumplings' ? 1352 : 1400} height={cat.id === 'mini-dumplings' ? 962 : 758} loading="lazy" decoding="async" />
             <ul class="flavor-row" aria-label={zh ? '內餡' : 'Fillings'}>
               {cat.items.map((item) => <li><img src={`/assets/products/${item.id}-filling.jpg`} alt="" width="300" height="300" loading="lazy" decoding="async" /><span>{t(item).replace(' & ', ' &\u00a0')}</span></li>)}
             </ul>
@@ -62,9 +62,9 @@ const columns = [cats.slice(0, split), cats.slice(split)];
           <ul>
             {cat.items.map((item) => (
               <li data-product-id={item.id} class:list={['catalog-row border-t border-brand-ink/5', !cat.sharedImage && 'has-thumb', !cat.sharedImage && 'first:border-t-0']}>
-                {!cat.sharedImage && <span class="catalog-thumb"><img src={`/assets/products/${item.id}.jpg`} alt="" width="156" height="120" loading="lazy" decoding="async" /></span>}
+                {!cat.sharedImage && <span class="catalog-thumb"><img src={`/assets/products/${item.id}.jpg`} alt="" width="200" height="154" loading="lazy" decoding="async" /></span>}
                 <div class="min-w-0">
-                <span class="catalog-name font-medium text-brand-ink">{t(item).split(' · ').map((g, i) => i === 0 ? g : <span class="whitespace-nowrap">{'\u00a0· '}{g}</span>)}</span>
+                <span class="catalog-name font-medium text-brand-ink">{t(item).split(' · ').map((g, i) => i === 0 ? (g.length <= 16 ? g.replace(/ /g, '\u00a0') : g.replace(' & ', ' &\u00a0')) : <>{' '}<span class="whitespace-nowrap">{'· '}{g}</span></>)}</span>
                 <div lang={zh ? 'zh-Hant' : 'en'} class="catalog-spec">
                   <span data-pack aria-label={item.pack}>{unitsZh(compactPack(item.pack)).split(' · ').map((g, i) => <>{i > 0 && <span class="spec-dot"> · </span>}<span class="spec-part">{g}</span></>)}</span>
                   <span aria-hidden="true" class="text-brand-ink/30">·</span>
@@ -111,8 +111,8 @@ const columns = [cats.slice(0, split), cats.slice(split)];
   .flavor-row img { width: 100%; max-width: 148px; aspect-ratio: 1; border-radius: 50%; border: 4px solid #fff; box-shadow: 0 6px 16px rgb(26 26 26 / 0.16); object-fit: cover; }
   .flavor-row span { margin-top: 8px; min-height: 2.7em; font-size: 14px; line-height: 1.35; font-weight: 500; color: #1A1A1A; }
   .catalog-row { padding: 14px 16px; }
-  .catalog-row.has-thumb { display: grid; grid-template-columns: 104px 1fr; align-items: center; gap: 14px; }
-  .catalog-thumb { display: flex; align-items: center; justify-content: center; width: 104px; height: 80px; background: #F7F3EC; border-radius: 6px; overflow: hidden; }
+  .catalog-row.has-thumb { display: grid; grid-template-columns: 128px 1fr; align-items: center; gap: 14px; }
+  .catalog-thumb { display: flex; align-items: center; justify-content: center; width: 128px; height: 98px; background: #F7F3EC; border-radius: 6px; overflow: hidden; }
   .catalog-thumb img { max-width: 96%; max-height: 96%; object-fit: contain; mix-blend-mode: multiply; }
   .catalog-name { display: block; font-size: 16px; line-height: 1.5; }
   .catalog-spec { display: flex; flex-direction: column; margin-top: 6px; font-size: 14px; line-height: 1.6; color: rgb(26 26 26 / 0.8); font-variant-numeric: tabular-nums; }
@@ -124,8 +124,8 @@ const columns = [cats.slice(0, split), cats.slice(split)];
   [data-case-count] { font-weight: 600; color: #1A1A1A; }
   @media (min-width: 640px) {
     .catalog-row { padding: 16px 22px; }
-    .catalog-row.has-thumb { grid-template-columns: 156px 1fr; gap: 22px; }
-    .catalog-thumb { width: 156px; height: 120px; }
+    .catalog-row.has-thumb { grid-template-columns: 200px 1fr; gap: 24px; }
+    .catalog-thumb { width: 200px; height: 154px; }
     .flavor-row { grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 0 22px; margin-top: -5%; }
     .flavor-row img { max-width: 136px; }
     .catalog-spec { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 0 6px; font-size: 14.5px; }
