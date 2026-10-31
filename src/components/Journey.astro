@@ -5,8 +5,8 @@ const { locale } = Astro.props;
 const zh = locale === 'zh-Hant';
 const prefix = zh ? '/zh-Hant' : '';
 const steps = zh
-  ? ['聯絡銷售', '確認產品與試樣需求', '獲取報價', '確認訂單', '安排配送', '後續補貨']
-  : ['Contact sales', 'Discuss products & samples', 'Receive a quote', 'Confirm your order', 'Arrange delivery', 'Plan your next order'];
+  ? ['聯絡銷售', '免費試樣', '獲取報價', '確認訂單', '每週配送', '後續補貨']
+  : ['Contact sales', 'Free samples', 'Receive a quote', 'Confirm your order', 'Weekly delivery', 'Plan your next order'];
 // Reuse only the illustrations as CSS sprite regions; former labels are outside each viewport.
 const illustrationX = [38, 331, 625, 918, 1212, 1506];
 ---
@@ -19,12 +19,11 @@ const illustrationX = [38, 331, 625, 918, 1212, 1506];
         <div class="step-copy">
           <span class="step-number">0{i + 1}</span>
           <span class="step-title">{step}</span>
-          {i === 1 && <span class="step-optional">{zh ? '試樣為可選需求' : 'Samples are optional'}</span>}
         </div>
       </li>)}
     </ol>
     <p class="mt-8 text-center text-[14px] leading-relaxed text-brand-ink/70 max-w-3xl mx-auto">
-      {zh ? '試樣品種、數量及費用由銷售確認；如有費用，將於安排前取得您的確認。配送費與預計到貨時間於報價時確認。' : 'Sales will confirm sample products, quantities and any fees, with your agreement before samples are arranged. Delivery fees and estimated arrival are confirmed with your quote.'}
+      {zh ? '試樣品種與數量由銷售確認。配送費與預計到貨時間於報價時確認。' : 'Sales will confirm which samples and quantities we can send. Delivery fees and estimated arrival are confirmed with your quote.'}
     </p>
     <div class="mt-8 flex justify-center">
       <a href={`${prefix}/contact/`} class="btn-primary rounded-full">{tr('journey.cta', locale)} →</a>

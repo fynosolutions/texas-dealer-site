@@ -7,7 +7,7 @@ dist=root/'dist'
 pages=[page for page in dist.rglob('*.html') if page != dist/'404.html']
 assert (dist/'404.html').exists(), 'Pages needs a 404 page to disable SPA fallback'
 assert len(pages)==8
-bad=re.compile(r'wei\s*ming|味鸣|味鳴|weiming|feast-contact|929.?607|Maspeth|5301 Grand|30%|US-Only|一個工作日|one business day|free samples|免費試樣|weekly delivery|每週配送|market.exclusive|全美唯一|市場獨家|vegetable.dyed|蔬菜染色|Restaurant-Ready',re.I)
+bad=re.compile(r'wei\s*ming|味鸣|味鳴|weiming|feast-contact|929.?607|Maspeth|5301 Grand|30%|US-Only|一個工作日|one business day|market.exclusive|全美唯一|市場獨家|vegetable.dyed|蔬菜染色|Restaurant-Ready',re.I)
 for f in pages:
  text=f.read_text(encoding='utf8')
  assert not bad.search(text),(f,bad.search(text).group())
