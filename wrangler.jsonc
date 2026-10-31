@@ -9,7 +9,7 @@
     "MAIL_PROVIDER": "resend",
     "MAIL_TO": "wzihui446@gmail.com",
     "MAIL_FROM": "Website Inquiry <onboarding@resend.dev>",
-    "NOTIFICATION_BRAND": "Website inquiry test",
+    "NOTIFICATION_BRAND": "YAYA DUMPLING WHOLESALE",
     "SMS_ENABLED": "false",
     "SMS_PROVIDER": "twilio",
     "ALLOWED_ORIGINS": "https://texas-dealer-site.pages.dev"

@@ -26,6 +26,7 @@ const prefix = isZh ? '/zh-Hant' : '';
       {!isZh && <><br />{tr('hero.title2', locale)}</>}
     </h1>
     <p class="mt-6 text-[17px] sm:text-[20px] leading-relaxed text-white/90 max-w-[65ch]">{tr('hero.subtitle', locale)}</p>
+    <p class="mt-5 text-[13px] sm:text-[14px] tracking-[0.18em] text-white/75">{isZh ? 'USDA · SQF · FDA 認證工廠出品' : 'USDA · SQF · FDA certified production'}</p>
     <div class="mt-8 flex flex-col sm:flex-row gap-4" data-home-actions>
       <a href={`${prefix}/products/`} class="btn-primary rounded-full">{tr('hero.catalog', locale)} →</a>
       <a href={`${prefix}/contact/`} class="btn-on-dark rounded-full">{tr('closing.cta', locale)}</a>

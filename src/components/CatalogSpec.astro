@@ -47,6 +47,7 @@ const note = {
           <ul>
             {cat.items.map((item) => (
               <li data-product-id={item.id} class="catalog-row border-t border-brand-ink/5 first:border-t-0">
+                <img src={`/assets/products/${item.id}.jpg`} alt="" width="72" height="56" loading="lazy" decoding="async" class="catalog-thumb" />
                 <span class="catalog-name font-medium text-brand-ink">{t(item)}</span>
                 <div lang="en" class="catalog-spec text-brand-ink/70">
                   <span data-pack aria-label={item.pack}>{compactPack(item.pack)}</span>
@@ -79,14 +80,16 @@ const note = {
 <style>
   .catalog-columns { column-count: 1; column-gap: 24px; }
   .catalog-card { display: inline-block; width: 100%; margin-bottom: 24px; break-inside: avoid; vertical-align: top; scroll-margin-top: 120px; }
-  .catalog-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; padding: 12px 16px; }
+  .catalog-row { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; padding: 10px 16px; }
+  .catalog-thumb { width: 72px; height: 56px; object-fit: cover; border-radius: 6px; background: #fff; flex: none; }
   .catalog-name { font-size: 14px; line-height: 1.6; }
   .catalog-spec { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: flex-end; gap: 0 5px; margin-left: auto; font-size: 12px; line-height: 1.6; text-align: right; }
   [data-case-count] { white-space: nowrap; }
   @media (min-width: 1280px) {
     .catalog-columns { column-count: 2; }
     .catalog-row { flex-wrap: nowrap; }
-    .catalog-name, .catalog-spec { white-space: nowrap; }
+    .catalog-name { flex: 1 1 auto; min-width: 0; }
+    .catalog-spec { white-space: nowrap; }
     .catalog-spec { flex-wrap: nowrap; flex-shrink: 0; }
   }
 </style>
