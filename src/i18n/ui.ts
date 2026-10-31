@@ -142,7 +142,7 @@ export const t: Record<string, Record<Locale,string>> = {
   },
   "wholesale.offers.o2.body": {
     "en": "Five colors and five fillings, with 30g pieces, for appetizer platters and set menus.",
-    "zh-Hant": "五種顏色、五種餡料，每顆 30g，為前菜拼盤和套餐提供更多搭配選擇。"
+    "zh-Hant": "五種顏色、五種餡料，每顆 30g，適合前菜拼盤與套餐。"
   },
   "wholesale.offers.o3.stat": {
     "en": "",

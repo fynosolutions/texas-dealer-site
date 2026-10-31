@@ -56,7 +56,7 @@
   /* align text under a bulleted title with the title text (dot 10px + gap 20px) */
   .lede-indent { margin-left: 0; }
   /* Chinese pages: wrap at punctuation, never split a word */
-  :lang(zh-Hant) p, :lang(zh-Hant) h1, :lang(zh-Hant) h2, :lang(zh-Hant) h3 { word-break: keep-all; overflow-wrap: anywhere; }
+  :lang(zh-Hant) p, :lang(zh-Hant) h1, :lang(zh-Hant) h2, :lang(zh-Hant) h3 { word-break: keep-all; overflow-wrap: anywhere; line-break: strict; }
   /* short red rule above page and section titles */
   /* mark above titles: the dumpling from the logo */
   .title-mark { display: block; width: 40px; height: 22px; background: url("/assets/title-mark.svg") no-repeat left center / contain; margin-bottom: 16px; }
