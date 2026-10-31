@@ -2,7 +2,7 @@
   {
     "id": "five-color",
     "en": "5-Color Gyoza",
-    "zh": "五彩鍋貼",
+    "zh": "五彩鍋貼（熟）",
     "sourcePage": 1,
     "items": [
       {
@@ -45,7 +45,7 @@
   {
     "id": "cooked-gyoza",
     "en": "Fully Cooked Gyoza",
-    "zh": "全熟煎餃",
+    "zh": "日式煎餃（熟）",
     "sourcePage": 1,
     "items": [
       {
@@ -126,7 +126,7 @@
   {
     "id": "mini-dumplings",
     "en": "Mini Dumplings",
-    "zh": "精緻小水餃",
+    "zh": "小水餃（生）",
     "sourcePage": 2,
     "items": [
       {

@@ -46,7 +46,7 @@ export const t: Record<string, Record<Locale,string>> = {
   },
   "product.colorful.name": {
     "en": "5-Color Gyoza",
-    "zh-Hant": "五彩鍋貼"
+    "zh-Hant": "五彩鍋貼（熟）"
   },
   "product.colorful.body": {
     "en": "Five colors and five fillings, with 30g pieces. An option for appetizer plates and set menus.",
@@ -62,7 +62,7 @@ export const t: Record<string, Record<Locale,string>> = {
   },
   "product.gyoza.name": {
     "en": "Fully Cooked Gyoza",
-    "zh-Hant": "全熟煎餃"
+    "zh-Hant": "日式煎餃（熟）"
   },
   "product.gyoza.body": {
     "en": "Four flavors. 2 lb per bag, 8 bags per case. Fully cooked; follow the product packaging for heating instructions.",
