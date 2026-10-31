@@ -9,13 +9,14 @@ const compactPack = (pack: string) => pack
   .replace(/(\d) (g|lb|oz)\b/g, '$1$2')
   .replace(/\/piece\b/g, '/pc')
   .replace(/ × /g, '×')
-  .replace(/ (pieces|packs)\/bag/g, '/bag');
+  .replace(/×(\d+) (pieces|packs)\/bag/g, '×$1/bag')
+  .replace(/ pieces\/bag/g, ' pcs/bag');
 const compactCount = (item: {pack: string; caseCount: string}) =>
   item.caseCount.replace('Approx. ', '≈') + (item.pack.includes('packs/bag') ? ' packs/case' : ' pcs/case');
 // Chinese pages show Chinese units; numbers stay identical to the PDF.
 const unitsZh = (s: string) => !zh ? s : s
   .replace(/ bags\/case/g, '袋/箱').replace(/ pcs\/case/g, '個/箱').replace(/ packs\/case/g, '包/箱')
-  .replace(/\/pc\b/g, '/個').replace(/\/bag\b/g, '/袋');
+  .replace(/ pcs\/bag/g, '個/袋').replace(/\/pc\b/g, '/個').replace(/\/bag\b/g, '/袋');
 type Cat = (typeof products)[number] & { sharedImage?: boolean };
 // Two columns on wide screens: split the list once where the estimated heights are closest,
 // so reading order stays the same when the columns stack on narrow screens.
@@ -58,7 +59,7 @@ const columns = [cats.slice(0, split), cats.slice(split)];
               <li data-product-id={item.id} class:list={['catalog-row border-t border-brand-ink/5', !cat.sharedImage && 'has-thumb', !cat.sharedImage && 'first:border-t-0']}>
                 {!cat.sharedImage && <span class="catalog-thumb"><img src={`/assets/products/${item.id}.jpg`} alt="" width="120" height="90" loading="lazy" decoding="async" /></span>}
                 <div class="min-w-0">
-                <span class="catalog-name font-medium text-brand-ink">{t(item)}</span>
+                <span class="catalog-name font-medium text-brand-ink">{t(item).split(' · ').map((g, i) => <>{i > 0 && ' '}<span class="whitespace-nowrap">{i > 0 && '· '}{g}</span></>)}</span>
                 <div lang={zh ? 'zh-Hant' : 'en'} class="catalog-spec">
                   <span data-pack aria-label={item.pack}>{unitsZh(compactPack(item.pack))}</span>
                   <span aria-hidden="true" class="text-brand-ink/30">·</span>
@@ -97,7 +98,7 @@ const columns = [cats.slice(0, split), cats.slice(split)];
   .catalog-columns { display: grid; grid-template-columns: 1fr; gap: 0 28px; align-items: start; }
   .catalog-card { margin-bottom: 28px; scroll-margin-top: 120px; }
   .catalog-aside { background: #F7F0E1; padding: 36px 32px; }
-  .catalog-hero { display: flex; justify-content: center; background: #F7F3EC; padding: 16px; }
+  .catalog-hero { display: flex; justify-content: center; background: #fff; padding: 16px; border-bottom: 1px solid rgb(26 26 26 / 0.06); }
   .catalog-hero img { width: 240px; height: 180px; object-fit: contain; mix-blend-mode: multiply; }
   .catalog-row { padding: 14px 16px; }
   .catalog-row.has-thumb { display: grid; grid-template-columns: 80px 1fr; align-items: center; gap: 16px; }

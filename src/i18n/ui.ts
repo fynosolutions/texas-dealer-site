@@ -129,8 +129,8 @@ export const t: Record<string, Record<Locale,string>> = {
     "zh-Hant": "36g 灌湯小籠包"
   },
   "wholesale.offers.o1.body": {
-    "en": "Available in pork and chicken. Share your expected order quantity and delivery location for wholesale pricing and delivery arrangements.",
-    "zh-Hant": "提供豬肉與雞肉口味。告知我們預計採購數量及送貨地點，獲取批發報價與配送安排。"
+    "en": "Pork or chicken. 36g each, 30 pcs per bag, 300 pcs per case.",
+    "zh-Hant": "豬肉與雞肉兩種口味。每顆 36g，每袋 30 個，每箱 300 個。"
   },
   "wholesale.offers.o2.stat": {
     "en": "",
@@ -153,8 +153,8 @@ export const t: Record<string, Record<Locale,string>> = {
     "zh-Hant": "德州配送"
   },
   "wholesale.offers.o3.body": {
-    "en": "Weekly delivery for Texas restaurants. Tell us your city and ZIP Code and we will confirm your route.",
-    "zh-Hant": "每週配送德州餐飲店。告訴我們城市與郵遞區號，我們確認配送路線。"
+    "en": "Weekly delivery for Texas restaurants. Your delivery day is confirmed with your quote.",
+    "zh-Hant": "每週配送德州餐飲店，配送日於報價時確認。"
   },
   "wholesale.offers.trust.1": {
     "en": "Product selection",
@@ -242,7 +242,7 @@ export const t: Record<string, Record<Locale,string>> = {
   },
   "contact.form.note": {
     "en": "Please include the products, quantities and delivery location you need. We will use your contact details to respond to your inquiry.",
-    "zh-Hant": "請註明所需產品、數量及配送地點。我們將使用您提供的聯絡資料回覆詢盤。"
+    "zh-Hant": "請註明所需產品、數量及配送地點。我們將使用您提供的聯絡資料回覆您的詢價。"
   },
   "contact.form.sending": {
     "en": "Sending…",
@@ -250,7 +250,7 @@ export const t: Record<string, Record<Locale,string>> = {
   },
   "contact.form.success": {
     "en": "Thank you. Your inquiry has been submitted for email delivery.",
-    "zh-Hant": "謝謝，您的詢盤已提交至郵件服務。"
+    "zh-Hant": "謝謝，您的詢價已提交至郵件服務。"
   },
   "contact.form.error": {
     "en": "Unable to submit. Your entries have been kept.",
