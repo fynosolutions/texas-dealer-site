@@ -45,7 +45,7 @@ export const t: Record<string, Record<Locale,string>> = {
     "zh-Hant": "水餃、煎餃、包點與點心，服務餐廳採購及補貨。聯絡銷售確認產品、批發報價與配送安排。"
   },
   "product.colorful.name": {
-    "en": "5-Color Gyoza",
+    "en": "5-Color Potstickers (Cooked)",
     "zh-Hant": "五彩鍋貼（熟）"
   },
   "product.colorful.body": {
@@ -61,7 +61,7 @@ export const t: Record<string, Record<Locale,string>> = {
     "zh-Hant": "豬肉／雞肉口味，每顆 36g，適合堂食及外賣菜單選品。"
   },
   "product.gyoza.name": {
-    "en": "Fully Cooked Gyoza",
+    "en": "Japanese Gyoza (Cooked)",
     "zh-Hant": "日式煎餃（熟）"
   },
   "product.gyoza.body": {
@@ -137,7 +137,7 @@ export const t: Record<string, Record<Locale,string>> = {
     "zh-Hant": ""
   },
   "wholesale.offers.o2.title": {
-    "en": "5-Color Gyoza",
+    "en": "5-Color Potstickers",
     "zh-Hant": "五彩鍋貼 · 五色五味"
   },
   "wholesale.offers.o2.body": {
