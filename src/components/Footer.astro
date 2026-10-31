@@ -78,7 +78,7 @@ const telHref = `tel:${company.phone.replace(/[^0-9+]/g, '')}`;
           <div>
             <a href={company.email ? `mailto:${company.email || (isZh ? "[電郵待補]" : "[Email to be added]")}` : undefined} aria-disabled={!company.email || undefined} class="underline underline-offset-4 hover:text-brand-red transition-colors break-all">{company.email || (isZh ? "[電郵待補]" : "[Email to be added]")}</a>
           </div>
-          <div><a href={company.phone ? telHref : undefined} aria-disabled={!company.phone || undefined} class="hover:text-brand-red transition-colors">TEL: {company.phone || (isZh ? "[電話待補]" : "[Phone to be added]")}</a></div>
+          <div><a href={company.phone ? telHref : undefined} aria-disabled={!company.phone || undefined} class="hover:text-brand-red transition-colors">{company.contactName ? company.contactName + ' · ' : ''}TEL: {company.phone || (isZh ? "[電話待補]" : "[Phone to be added]")}</a></div>
           {company.address && <div>{company.address}</div>}
         </address>
         <div class="mt-6 flex items-center gap-3">

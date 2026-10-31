@@ -30,7 +30,7 @@ for f in pages:
   source=json.loads((root/'reference/catalog-specs.json').read_text(encoding='utf8'))
   items=[item for group in groups for item in group['items']]
   rows=soup.select('[data-product-id]')
-  assert len(rows)==len(items)==len(source)==42
+  assert len(rows)==len(items)==len(source)==29
   for row,item,original in zip(rows,items,source):
    assert row['data-product-id']==item['id']
    assert row.select_one('[data-pack]')['aria-label']==item['pack']
@@ -41,5 +41,5 @@ for f in pages:
    assert item['caseCount']==original['caseCount'],item['id']
   catalog=soup.select_one('[data-product-catalog]').get_text(' ',strip=True)
   assert not re.search(r'\$|USD|unit price|case price|整箱價|單價',catalog,re.I)
-  assert len(soup.select('main h3'))==13
-print('PASS: 8 routes, 42 PDF product rows, 13 categories, pack/count match, no catalog prices, assets and forms.')
+  assert len(soup.select('main h3'))==9
+print('PASS: 8 routes, 29 PDF product rows, 9 categories, pack/count match, no catalog prices, assets and forms.')

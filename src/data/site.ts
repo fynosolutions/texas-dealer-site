@@ -1,7 +1,8 @@
-// Complete these values before publishing; no factory contact values are inherited.
+// Dealer brand and sales contact. No factory contact values are inherited.
 export const site = {
-  legalName: { en: '[BRAND NAME]', 'zh-Hant': '[銷售商品牌名稱]' },
-  shortName: { en: '[BRAND NAME]', 'zh-Hant': '[品牌待補]' },
-  phone: '', email: '', address: '', fax: '', website: '',
+  legalName: { en: 'YAYA DUMPLING WHOLESALE', 'zh-Hant': 'YAYA DUMPLING WHOLESALE' },
+  shortName: { en: 'YAYA DUMPLING WHOLESALE', 'zh-Hant': 'YAYA DUMPLING WHOLESALE' },
+  contactName: 'Jojo',
+  phone: '832-552-2898', email: 'yayaricebox@gmail.com', address: '', fax: '', website: '',
   preview: true,
 } as const;

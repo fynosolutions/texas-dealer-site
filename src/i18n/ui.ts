@@ -89,12 +89,12 @@ export const t: Record<string, Record<Locale,string>> = {
     "zh-Hant": "獲取批發報價"
   },
   "footer.brand.title": {
-    "en": "[BRAND NAME]",
-    "zh-Hant": "[銷售商品牌名稱]"
+    "en": "YAYA DUMPLING WHOLESALE",
+    "zh-Hant": "YAYA DUMPLING WHOLESALE"
   },
   "footer.rights": {
-    "en": "© 2026 [BRAND NAME]. All rights reserved.",
-    "zh-Hant": "© 2026 [銷售商品牌名稱]。版權所有。"
+    "en": "© 2026 YAYA DUMPLING WHOLESALE. All rights reserved.",
+    "zh-Hant": "© 2026 YAYA DUMPLING WHOLESALE。版權所有。"
   },
   "products.hero.title": {
     "en": "Full Catalog · Specs & Case Counts",
