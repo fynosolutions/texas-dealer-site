@@ -14,13 +14,13 @@ const prefix = isZh ? '/zh-Hant' : '';
 <section class="relative min-h-[100svh] bg-black text-white overflow-hidden flex flex-col justify-end">
   <div class="absolute inset-0" data-hero-video>
     
-    <img src="/assets/gyoza-chopsticks-dark.jpg" alt={isZh ? "煎餃出餐展示" : "Pan-fried gyoza ready to serve"} class="hero-image absolute top-0 left-0 h-[56svh] lg:h-full w-full lg:w-[140%] max-w-none object-cover" width="1672" height="941" fetchpriority="high" />
+    <img src="/assets/gyoza-chopsticks-dark.jpg" alt={isZh ? "煎餃出餐展示" : "Pan-fried gyoza ready to serve"} class="hero-image absolute top-0 left-0 h-[60svh] lg:h-full w-full lg:w-[140%] max-w-none object-cover [mask-image:linear-gradient(to_bottom,black_55%,transparent)] lg:[mask-image:none]" width="1672" height="941" fetchpriority="high" />
     <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-black/5"></div>
     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
   </div>
 
   <div class="container-x w-full relative pb-14 sm:pb-20 pt-40">
-    <h1 class="display-hx text-bal text-[clamp(38px,6.3vw,88px)] max-w-[19ch] lg:max-w-[12ch]">
+    <h1 class:list={["display-hx text-bal text-[clamp(38px,6.3vw,88px)] max-w-[19ch]", !isZh && "lg:max-w-[12ch]"]}>
       {tr('hero.title1', locale)}
       {!isZh && <> {tr('hero.title2', locale)}</>}
     </h1>

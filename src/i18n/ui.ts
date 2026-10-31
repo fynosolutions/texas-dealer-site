@@ -69,7 +69,7 @@ export const t: Record<string, Record<Locale,string>> = {
     "zh-Hant": "四種口味，2 lb／袋，8 袋／箱。全熟產品，加熱方法請依產品包裝指引。"
   },
   "product.fried-rice-ball.name": {
-    "en": "Fried Rice Balls",
+    "en": "Fried Glutinous Rice Balls",
     "zh-Hant": "炸不爆 · 油炸湯圓"
   },
   "product.fried-rice-ball.body": {
@@ -129,7 +129,7 @@ export const t: Record<string, Record<Locale,string>> = {
     "zh-Hant": "36g 灌湯小籠包"
   },
   "wholesale.offers.o1.body": {
-    "en": "Pork or chicken. 36g each, 30 pcs per bag, 300 pcs per case.",
+    "en": "Pork or chicken. 36g each, 30 pcs per bag, 300\u00a0pcs per case.",
     "zh-Hant": "豬肉與雞肉兩種口味。每顆 36g，每袋 30 個，每箱 300 個。"
   },
   "wholesale.offers.o2.stat": {

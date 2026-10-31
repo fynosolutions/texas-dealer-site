@@ -44,7 +44,7 @@ const offers = [
         <h2 class="display-hx text-bal text-[clamp(28px,2.9vw,42px)]">{tr('wholesale.offers.title', locale)}</h2>
       </div>
       <p class="lede-indent mt-3 text-[16px] leading-[1.6] text-brand-ink/65">
-        {tr('wholesale.offers.sub', locale).split(' · ').map((g, i) => <>{i > 0 && ' · '}<span class="whitespace-nowrap">{g}</span></>)}
+        {tr('wholesale.offers.sub', locale).split(' · ').map((g, i) => <>{i > 0 && <span class="hidden sm:inline"> · </span>}<span class="block sm:inline whitespace-nowrap">{g}</span></>)}
       </p>
     </div>
 

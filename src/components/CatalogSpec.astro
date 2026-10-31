@@ -59,9 +59,9 @@ const columns = [cats.slice(0, split), cats.slice(split)];
               <li data-product-id={item.id} class:list={['catalog-row border-t border-brand-ink/5', !cat.sharedImage && 'has-thumb', !cat.sharedImage && 'first:border-t-0']}>
                 {!cat.sharedImage && <span class="catalog-thumb"><img src={`/assets/products/${item.id}.jpg`} alt="" width="120" height="90" loading="lazy" decoding="async" /></span>}
                 <div class="min-w-0">
-                <span class="catalog-name font-medium text-brand-ink">{t(item).split(' · ').map((g, i) => <>{i > 0 && ' '}<span class="whitespace-nowrap">{i > 0 && '· '}{g}</span></>)}</span>
+                <span class="catalog-name font-medium text-brand-ink">{t(item).split(' · ').map((g, i) => i === 0 ? g : <span class="whitespace-nowrap">{'\u00a0· '}{g}</span>)}</span>
                 <div lang={zh ? 'zh-Hant' : 'en'} class="catalog-spec">
-                  <span data-pack aria-label={item.pack}>{unitsZh(compactPack(item.pack))}</span>
+                  <span data-pack aria-label={item.pack}>{unitsZh(compactPack(item.pack)).split(' · ').map((g, i) => <>{i > 0 && ' · '}<span class="whitespace-nowrap">{g}</span></>)}</span>
                   <span aria-hidden="true" class="text-brand-ink/30">·</span>
                   <span data-case-count aria-label={'Case quantity: ' + item.caseCount}>{unitsZh(compactCount(item))}</span>
                 </div>
@@ -107,7 +107,7 @@ const columns = [cats.slice(0, split), cats.slice(split)];
   .catalog-name { display: block; font-size: 16px; line-height: 1.5; }
   .catalog-spec { display: flex; flex-direction: column; margin-top: 6px; font-size: 14px; line-height: 1.6; color: rgb(26 26 26 / 0.8); font-variant-numeric: tabular-nums; }
   .catalog-spec > span[aria-hidden] { display: none; }
-  [data-pack], [data-case-count] { white-space: nowrap; }
+  [data-case-count] { white-space: nowrap; }
   [data-case-count] { font-weight: 600; color: #1A1A1A; }
   @media (min-width: 640px) {
     .catalog-row { padding: 16px 22px; }
