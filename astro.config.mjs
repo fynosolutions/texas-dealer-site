@@ -4,5 +4,5 @@ export default defineConfig({
   output: 'static',
   trailingSlash: 'always',
   integrations: [tailwind()],
-  i18n: { defaultLocale: 'en', locales: ['en', 'zh-Hant'], routing: { prefixDefaultLocale: false } },
+  i18n: { defaultLocale: 'en', locales: ['en', 'zh-Hant', 'zh-Hans'], routing: { prefixDefaultLocale: false } },
 });

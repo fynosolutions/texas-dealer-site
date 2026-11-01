@@ -1,10 +1,11 @@
 ---
 import products from '../data/products.json';
+import type { Locale } from '../i18n/ui';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-interface Props { locale: 'en' | 'zh-Hant'; }
+interface Props { locale: Locale; }
 const {locale} = Astro.props;
-const zh = locale === 'zh-Hant';
+const zh = locale !== 'en';
 // Images are served with a year-long immutable cache, so each URL carries a hash of the file:
 // replacing a photo changes its URL automatically and browsers fetch the new one.
 const img = (file: string) => `/assets/products/${file}?v=${createHash('md5').update(readFileSync(`public/assets/products/${file}`)).digest('hex').slice(0, 8)}`;
@@ -70,8 +71,8 @@ const columns = [cats.slice(0, split), cats.slice(split)];
               <li data-product-id={item.id} class:list={['catalog-row border-t border-brand-ink/5', !cat.sharedImage && 'has-thumb', !cat.sharedImage && 'first:border-t-0']}>
                 {!cat.sharedImage && <span class="catalog-thumb"><img src={img(`${item.id}.jpg`)} alt="" width="200" height="154" loading="lazy" decoding="async" /></span>}
                 <div class="min-w-0">
-                <span class="catalog-name font-medium text-brand-ink">{t(item).split(' · ').map((g, i) => i === 0 ? (g.length <= 16 ? g.replace(/ /g, '\u00a0') : g.replace(' & ', ' &\u00a0')) : <>{' '}<span class="whitespace-nowrap">{'· '}{g}</span></>)}</span>
-                <div lang={zh ? 'zh-Hant' : 'en'} class="catalog-spec">
+                <span class="catalog-name font-medium text-brand-ink">{t(item).split(' · ').map((g, i) => i === 0 ? (g.length <= 16 ? g.replace(/ /g, '\u00a0') : g.replace(' & ', ' &\u00a0').replace(/\([^)]*\)/g, (m) => m.replace(/ /g, '\u00a0'))) : <>{' '}<span class="whitespace-nowrap">{'· '}{g}</span></>)}</span>
+                <div lang={locale} class="catalog-spec">
                   <span data-pack aria-label={item.pack}>{unitsZh(compactPack(item.pack)).split(' · ').map((g, i) => <>{i > 0 && <span class="spec-dot"> · </span>}<span class="spec-part">{g}</span></>)}</span>
                   <span aria-hidden="true" class="text-brand-ink/30">·</span>
                   <span data-case-count aria-label={'Case quantity: ' + item.caseCount}>{unitsZh(compactCount(item))}</span>
@@ -86,7 +87,7 @@ const columns = [cats.slice(0, split), cats.slice(split)];
         <span class="title-mark" aria-hidden="true"></span>
         <h2 class="display-hx text-[28px] leading-[1.2] mb-3">{zh ? '免費試樣' : 'Free samples'}</h2>
         <p class="text-[16px] leading-[1.7] text-brand-ink/75 mb-6 max-w-[40ch]">{zh ? '列出想試的品項與預計箱數，我們先寄樣品給後廚試做，再為您報批發價。' : 'List the items you want to try and your expected case quantities. We send samples for your kitchen to test, then quote wholesale pricing.'}</p>
-        <a href={zh ? '/zh-Hant/contact/' : '/contact/'} class="btn-primary rounded-full">{zh ? '索取試樣與報價' : 'Request samples & pricing'} →</a>
+        <a href={zh ? `/${locale}/contact/` : '/contact/'} class="btn-primary rounded-full">{zh ? '索取試樣與報價' : 'Request samples & pricing'} →</a>
       </div>}
       </div>
     ))}

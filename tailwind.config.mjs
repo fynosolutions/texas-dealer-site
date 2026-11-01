@@ -20,6 +20,7 @@ export default {
       fontFamily: {
         serif: ['Fraunces', 'Cormorant Garamond', 'Georgia', 'serif'],
         sans: ['Inter', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+        'sans-sc': ['"PingFang SC"', '"Noto Sans SC"', '"Microsoft YaHei"', '"Inter"', 'sans-serif'],
         'sans-cn': [
           '"PingFang TC"',
           '"Noto Sans TC"',

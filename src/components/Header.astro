@@ -1,5 +1,5 @@
 ---
-import { tr, company, type Locale } from '../i18n/ui';
+import { tr, company, languages, type Locale } from '../i18n/ui';
 
 interface Props {
   locale: Locale;
@@ -7,13 +7,16 @@ interface Props {
 }
 
 const { locale, currentPath } = Astro.props;
-const isZh = locale === 'zh-Hant';
-const prefix = isZh ? '/zh-Hant' : '';
-const otherLangPath = (() => {
-  let stripped = currentPath.replace(/^\/zh-Hant/, '');
-  if (stripped === '') stripped = '/';
-  return isZh ? stripped : `/zh-Hant${stripped === '/' ? '' : stripped}`;
-})();
+const isZh = locale !== 'en';
+const prefix = isZh ? `/${locale}` : '';
+// The two languages this page is not in. Labels sit in data-keep so the Simplified build step leaves 繁體 alone.
+const basePath = currentPath.replace(/^\/zh-Han[st]/, '') || '/';
+const langLinks = (['en', 'zh-Hans', 'zh-Hant'] as const).filter((l) => l !== locale).map((l) => ({
+  href: l === 'en' ? basePath : `/${l}${basePath}`,
+  label: l === 'en' ? 'EN' : languages[l],
+  short: l === 'en' ? '' : languages[l][0], // 简 / 繁 on phones, so the switch fits beside the bar at 360px
+  aria: l === 'en' ? 'Switch to English' : l === 'zh-Hans' ? '切换到简体中文' : '切換到繁體中文',
+}));
 
 const nav = [
   { href: `${prefix}/`, label: tr('nav.home', locale), match: 'home' },
@@ -23,7 +26,7 @@ const nav = [
 ];
 
 function isActive(match: string): boolean {
-  const path = currentPath.replace(/^\/zh-Hant/, '');
+  const path = currentPath.replace(/^\/zh-Han[st]/, '');
   if (match === 'home') return path === '/' || path === '';
   return path.startsWith(`/${match}`);
 }
@@ -90,13 +93,9 @@ function isActive(match: string): boolean {
   </div>
 
   
-  <a
-    href={otherLangPath}
-    class="language-switch pointer-events-auto inline-flex items-center absolute right-3 sm:right-6 top-0 rounded-full bg-white/90 backdrop-blur border border-black/10 shadow-sm px-3 sm:px-4 py-2 sm:py-2.5 text-[12px] font-semibold tracking-[0.12em] uppercase text-brand-ink hover:bg-white transition-colors"
-    aria-label={isZh ? 'Switch to English' : '切換到繁體中文'}
-  >
-    {isZh ? 'EN' : '繁體'}
-  </a>
+  <div class="language-switch pointer-events-auto inline-flex items-center absolute right-3 sm:right-6 top-0 rounded-full bg-white/90 backdrop-blur border border-black/10 shadow-sm px-0.5 sm:px-1 py-1 text-[12px] font-semibold tracking-[0.04em] sm:tracking-[0.08em] text-brand-ink">
+    {langLinks.map((l) => <a href={l.href} aria-label={l.aria} class="rounded-full px-1.5 sm:px-3 py-1.5 sm:py-2 hover:bg-black/5 transition-colors">{l.short ? <><span data-keep class="sm:hidden">{l.short}</span><span data-keep class="hidden sm:inline">{l.label}</span></> : <span data-keep>{l.label}</span>}</a>)}
+  </div>
 
   
   <div
@@ -115,9 +114,9 @@ function isActive(match: string): boolean {
           {item.label}
         </a>
       ))}
-      <a href={otherLangPath} class="flex items-center min-h-[48px] px-6 text-[13px] tracking-[0.14em] uppercase text-brand-ink/60">
-        {isZh ? 'EN' : '繁體中文'}
-      </a>
+      <div class="flex items-center min-h-[48px] px-4 gap-1 text-[13px] tracking-[0.08em] text-brand-ink/60">
+        {langLinks.map((l) => <a href={l.href} aria-label={l.aria} class="px-2 py-2"><span data-keep>{l.label}</span></a>)}
+      </div>
     </nav>
     <div class="px-6 pb-5">
       <a

@@ -1,9 +1,10 @@
 import { site } from '../data/site';
-export const languages = {en:'EN','zh-Hant':'繁體'} as const;
+export const languages = {en:'EN','zh-Hant':'繁體','zh-Hans':'简体'} as const;
 export type Locale = keyof typeof languages;
 export const defaultLocale: Locale = 'en';
 export const company = site;
-export const t: Record<string, Record<Locale,string>> = {
+// Simplified pages reuse the Traditional text; scripts/build.mjs converts them after the build.
+export const t: Record<string, Record<'en' | 'zh-Hant',string>> = {
   "nav.home": {
     "en": "Home",
     "zh-Hant": "首頁"
@@ -53,7 +54,7 @@ export const t: Record<string, Record<Locale,string>> = {
     "zh-Hant": "五色造型、五種餡料，每顆 30g，適合前菜拼盤與套餐搭配。"
   },
   "product.soup.name": {
-    "en": "Soup Dumplings",
+    "en": "Soup Dumplings (Xiao Long Bao)",
     "zh-Hant": "灌湯小籠包"
   },
   "product.soup.body": {
@@ -69,11 +70,11 @@ export const t: Record<string, Record<Locale,string>> = {
     "zh-Hant": "四種口味，2 lb／袋，8 袋／箱。全熟產品，加熱方法請依產品包裝指引。"
   },
   "product.fried-rice-ball.name": {
-    "en": "Fried Glutinous Rice Balls",
+    "en": "Fried Sweet Rice Balls",
     "zh-Hant": "炸不爆 · 油炸湯圓"
   },
   "product.fried-rice-ball.body": {
-    "en": "Black sesame filled glutinous rice balls for dessert and snack menus. Follow the product packaging for preparation instructions.",
+    "en": "Black sesame filled sweet rice balls for dessert and snack menus. Follow the product packaging for preparation instructions.",
     "zh-Hant": "黑芝麻餡湯圓，適合甜品與小食菜單。製作方式請依產品包裝指引。"
   },
   "closing.title": {
@@ -291,5 +292,5 @@ export const t: Record<string, Record<Locale,string>> = {
 };
 export function tr(key: string, locale: Locale): string {
   if (!t[key]) throw new Error(`Missing translation: ${key}`);
-  return t[key][locale];
+  return t[key][locale === 'zh-Hans' ? 'zh-Hant' : locale];
 }

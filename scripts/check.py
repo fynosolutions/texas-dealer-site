@@ -6,8 +6,8 @@ root=Path(__file__).resolve().parents[1]
 dist=root/'dist'
 pages=[page for page in dist.rglob('*.html') if page != dist/'404.html']
 assert (dist/'404.html').exists(), 'Pages needs a 404 page to disable SPA fallback'
-assert len(pages)==8
-bad=re.compile(r'wei\s*ming|味鸣|味鳴|weiming|feast-contact|929.?607|Maspeth|5301 Grand|30%|US-Only|一個工作日|one business day|market.exclusive|全美唯一|市場獨家|vegetable.dyed|蔬菜染色|Restaurant-Ready',re.I)
+assert len(pages)==12
+bad=re.compile(r'wei\s*ming|味鸣|味鳴|weiming|feast-contact|929.?607|Maspeth|5301 Grand|30%|US-Only|一個工作日|一个工作日|one business day|market.exclusive|全美唯一|市場獨家|市场独家|vegetable.dyed|蔬菜染色|Restaurant-Ready',re.I)
 for f in pages:
  text=f.read_text(encoding='utf8')
  assert not bad.search(text),(f,bad.search(text).group())
@@ -40,6 +40,6 @@ for f in pages:
    assert re.findall(r'\d+(?:\.\d+)?',item['pack'])==re.findall(r'\d+(?:\.\d+)?',original['pack']),item['id']
    assert item['caseCount']==original['caseCount'],item['id']
   catalog=soup.select_one('[data-product-catalog]').get_text(' ',strip=True)
-  assert not re.search(r'\$|USD|unit price|case price|整箱價|單價',catalog,re.I)
+  assert not re.search(r'\$|USD|unit price|case price|整箱價|單價|整箱价|单价',catalog,re.I)
   assert len(soup.select('main h3'))==9
-print('PASS: 8 routes, 29 PDF product rows, 9 categories, pack/count match, no catalog prices, assets and forms.')
+print('PASS: 12 routes, 29 PDF product rows, 9 categories, pack/count match, no catalog prices, assets and forms.')

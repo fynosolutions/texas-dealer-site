@@ -15,7 +15,7 @@
       },
       {
         "id": "five-color-2",
-        "en": "Pork & Napa · White",
+        "en": "Pork & Napa Cabbage · White",
         "zh": "白菜豬肉 · 白",
         "pack": "30 g/piece · 2 lb/bag · 10 bags/case",
         "caseCount": "300"
@@ -72,7 +72,7 @@
       },
       {
         "id": "cooked-gyoza-4",
-        "en": "Pork & Napa",
+        "en": "Pork & Napa Cabbage",
         "zh": "豬肉白菜",
         "pack": "21 g/piece · 2 lb/bag · 8 bags/case",
         "caseCount": "Approx. 346"
@@ -82,7 +82,7 @@
   },
   {
     "id": "soup-dumplings",
-    "en": "Soup Dumplings",
+    "en": "Soup Dumplings (Xiao Long Bao)",
     "zh": "灌湯小籠包",
     "sourcePage": 1,
     "items": [
@@ -104,7 +104,7 @@
   },
   {
     "id": "popcorn-wonton",
-    "en": "Popcorn Wonton",
+    "en": "Popcorn Wontons",
     "zh": "爆米花炸雲吞",
     "sourcePage": 2,
     "items": [
@@ -132,7 +132,7 @@
     "items": [
       {
         "id": "mini-dumplings-1",
-        "en": "Pork & Napa",
+        "en": "Pork & Napa Cabbage",
         "zh": "豬肉白菜",
         "pack": "17 g/piece · 1 lb/bag · 20 bags/case",
         "caseCount": "534"
@@ -163,20 +163,20 @@
   },
   {
     "id": "buns",
-    "en": "Buns",
+    "en": "Steamed Buns (Mantou)",
     "zh": "饅頭",
     "sourcePage": 2,
     "items": [
       {
         "id": "buns-1",
-        "en": "Wheat Bran Bun",
+        "en": "Whole Wheat Bun",
         "zh": "全麥養生饅頭",
         "pack": "90 g × 6 pieces/bag · 10 bags/case",
         "caseCount": "60"
       },
       {
         "id": "buns-2",
-        "en": "Traditional Steamed Bun",
+        "en": "Plain Steamed Bun",
         "zh": "北方傳統饅頭",
         "pack": "90 g × 6 pieces/bag · 10 bags/case",
         "caseCount": "60"
@@ -213,7 +213,7 @@
   },
   {
     "id": "fa-gao",
-    "en": "Fa Gao · Steamed Cake",
+    "en": "Fa Gao (Steamed Sponge Cake)",
     "zh": "發糕",
     "sourcePage": 3,
     "items": [
@@ -235,13 +235,13 @@
   },
   {
     "id": "rice-balls",
-    "en": "Glutinous Rice Balls",
+    "en": "Sweet Rice Balls",
     "zh": "湯圓",
     "sourcePage": 3,
     "items": [
       {
         "id": "rice-balls-1",
-        "en": "Fried Glutinous Rice Balls",
+        "en": "Fried Sweet Rice Balls",
         "zh": "炸不爆 · 油炸湯圓",
         "pack": "300 g/bag · 30 bags/case",
         "caseCount": "300"
@@ -250,8 +250,8 @@
   },
   {
     "id": "dim-sum",
-    "en": "Dim Sum · Cruller",
-    "zh": "點心 · 油條",
+    "en": "Dim Sum",
+    "zh": "點心",
     "sourcePage": 3,
     "items": [
       {
@@ -263,14 +263,14 @@
       },
       {
         "id": "dim-sum-2",
-        "en": "Chinese Cruller · Large",
+        "en": "Chinese Cruller (You Tiao) · Large",
         "zh": "中式油條（大）",
         "pack": "100 g × 3 pieces/bag · 14 bags/case",
         "caseCount": "42"
       },
       {
         "id": "dim-sum-3",
-        "en": "Sticky Rice with Chicken & Mushrooms",
+        "en": "Sticky Rice Chicken (Lo Mai Gai)",
         "zh": "菌菇糯米雞",
         "pack": "100 g × 6 pieces/bag · 24 bags/case",
         "caseCount": "144"

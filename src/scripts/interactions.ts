@@ -7,8 +7,16 @@ if ('IntersectionObserver' in window && !reducedMotion.matches) {
   }, { threshold: 0.08 });
   document.querySelectorAll('.rev').forEach(el => { el.classList.add('rev-ready'); observer.observe(el); });
 }
-const zh = document.documentElement.lang === 'zh-Hant';
-const messages = zh ? {
+const lang = document.documentElement.lang;
+// This script is shared by every page, so the Simplified build step cannot convert it.
+const messages = lang === 'zh-Hans' ? {
+  sending: '送出中…', mock: '模拟提交完成，未发送邮件或短信。',
+  accepted: '谢谢，您的询盘已提交至邮件服务。',
+  not_configured: '表单暂时无法送出。已保留您填写的内容，请稍后再试。',
+  partial: '部分通知已被接受，另一通道未完成。请勿立即重复提交。',
+  unknown: '无法确认通知状态，可能已发送。已保留内容，请勿立即重复提交。',
+  failed: '提交未完成，已保留您的内容。请稍后重试。',
+} : lang === 'zh-Hant' ? {
   sending: '送出中…', mock: '模擬提交完成，未發送郵件或簡訊。',
   accepted: '謝謝，您的詢盤已提交至郵件服務。',
   not_configured: '表單暫時無法送出。已保留您填寫的內容，請稍後再試。',

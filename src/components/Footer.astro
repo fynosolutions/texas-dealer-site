@@ -7,8 +7,8 @@ interface Props {
 }
 
 const { locale, hideForm = false } = Astro.props;
-const isZh = locale === 'zh-Hant';
-const prefix = isZh ? '/zh-Hant' : '';
+const isZh = locale !== 'en';
+const prefix = isZh ? `/${locale}` : '';
 const telHref = `tel:${company.phone.replace(/[^0-9+]/g, '')}`;
 ---
 
