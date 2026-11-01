@@ -3,6 +3,7 @@
     "id": "five-color",
     "en": "5-Color Potstickers (Cooked)",
     "zh": "五彩鍋貼（熟）",
+    "note": { "en": "Pan-fry or steam", "zh": "可煎可蒸" },
     "sourcePage": 1,
     "items": [
       {

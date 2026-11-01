@@ -22,7 +22,7 @@ const compactCount = (item: {pack: string; caseCount: string}) =>
 const unitsZh = (s: string) => !zh ? s : s
   .replace(/ bags\/case/g, '袋/箱').replace(/ pcs\/case/g, '個/箱').replace(/ packs\/case/g, '包/箱')
   .replace(/ pcs\/bag/g, '個/袋').replace(/\/pc\b/g, '/個').replace(/\/bag\b/g, '/袋');
-type Cat = (typeof products)[number] & { sharedImage?: boolean };
+type Cat = (typeof products)[number] & { sharedImage?: boolean; note?: {zh: string; en: string} };
 // Two columns on wide screens: split the list once where the estimated heights are closest,
 // so reading order stays the same when the columns stack on narrow screens.
 const cats = products as Cat[];
@@ -57,6 +57,7 @@ const columns = [cats.slice(0, split), cats.slice(split)];
         <div id={`category-${cat.id}`} tabindex="-1" class="catalog-card bg-white border border-brand-ink/10 shadow-sm">
           <div class="bg-neutral-100 border-l-4 border-brand-red px-5 py-3.5">
             <h3 class="font-sans text-[18px] text-brand-ink font-semibold">{t(cat)}</h3>
+            {cat.note && <p class="mt-0.5 text-[14px] text-brand-ink/65">{t(cat.note)}</p>}
           </div>
           {cat.sharedImage && <div class="flavor-hero">
             <img class="flavor-bg" src={img(`${cat.id}-plate.jpg`)} alt={t(cat)} width={cat.id === 'mini-dumplings' ? 1352 : 1400} height={cat.id === 'mini-dumplings' ? 962 : 758} loading="lazy" decoding="async" />
