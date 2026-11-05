@@ -3,7 +3,10 @@
     "id": "five-color",
     "en": "5-Color Potstickers (Cooked)",
     "zh": "五彩鍋貼（熟）",
-    "note": { "en": "Pan-Fry or Steam", "zh": "可煎可蒸" },
+    "note": {
+      "en": "Pan-Fry or Steam",
+      "zh": "可煎可蒸"
+    },
     "sourcePage": 1,
     "items": [
       {
@@ -212,22 +215,15 @@
     ]
   },
   {
-    "id": "ma-lai-go",
+    "id": "fa-gao",
     "en": "Ma Lai Go (Steamed Sponge Cake)",
     "zh": "馬拉糕",
     "sourcePage": 3,
     "items": [
       {
-        "id": "ma-lai-go-1",
+        "id": "fa-gao-1",
         "en": "Brown Sugar",
         "zh": "紅糖馬拉糕",
-        "pack": "100 g × 12 pieces/bag · 8 bags/case",
-        "caseCount": "96"
-      },
-      {
-        "id": "ma-lai-go-2",
-        "en": "Pumpkin",
-        "zh": "南瓜馬拉糕",
         "pack": "100 g × 12 pieces/bag · 8 bags/case",
         "caseCount": "96"
       }
