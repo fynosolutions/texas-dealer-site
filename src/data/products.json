@@ -29,8 +29,8 @@
       },
       {
         "id": "five-color-4",
-        "en": "Shrimp & Water Chestnut · Pink",
-        "zh": "鮮蝦馬蹄 · 粉",
+        "en": "Shrimp & Water Chestnut · Red",
+        "zh": "鮮蝦馬蹄 · 紅",
         "pack": "30 g/piece · 2 lb/bag · 10 bags/case",
         "caseCount": "300"
       },
@@ -212,22 +212,22 @@
     ]
   },
   {
-    "id": "fa-gao",
-    "en": "Fa Gao (Steamed Sponge Cake)",
-    "zh": "發糕",
+    "id": "ma-lai-go",
+    "en": "Ma Lai Go (Steamed Sponge Cake)",
+    "zh": "馬拉糕",
     "sourcePage": 3,
     "items": [
       {
-        "id": "fa-gao-1",
+        "id": "ma-lai-go-1",
         "en": "Brown Sugar",
-        "zh": "紅糖發糕",
+        "zh": "紅糖馬拉糕",
         "pack": "100 g × 12 pieces/bag · 8 bags/case",
         "caseCount": "96"
       },
       {
-        "id": "fa-gao-2",
-        "en": "White Sugar",
-        "zh": "白糖發糕",
+        "id": "ma-lai-go-2",
+        "en": "Pumpkin",
+        "zh": "南瓜馬拉糕",
         "pack": "100 g × 12 pieces/bag · 8 bags/case",
         "caseCount": "96"
       }

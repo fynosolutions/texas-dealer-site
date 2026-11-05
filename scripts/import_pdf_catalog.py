@@ -12,7 +12,7 @@ group('five-color','5-Color Gyoza','五彩鍋貼',3,[
  ('Beef & Celery · Purple','西芹牛肉 · 紫',g,'300'),
  ('Pork & Napa · White','白菜豬肉 · 白',g,'300'),
  ('Chicken & Corn · Yellow','玉米雞肉 · 黃',g,'300'),
- ('Shrimp & Water Chestnut · Pink','鮮蝦馬蹄 · 粉',g,'300'),
+ ('Shrimp & Water Chestnut · Red','鮮蝦馬蹄 · 紅',g,'300'),
  ('Vegetable · Green','素菜 · 綠',g,'300')])
 g='21 g/piece · 2 lb/bag · 8 bags/case'
 group('cooked-gyoza','Fully Cooked Gyoza','全熟煎餃',3,[
