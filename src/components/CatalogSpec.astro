@@ -58,8 +58,7 @@ const columns = [cats.slice(0, split), cats.slice(split)];
       {col.map((cat) => (
         <div id={`category-${cat.id}`} tabindex="-1" class="catalog-card bg-white border border-brand-ink/10 shadow-sm">
           <div class="bg-neutral-100 border-l-4 border-brand-red px-5 py-3.5">
-            <h3 class="font-sans text-[18px] text-brand-ink font-semibold">{t(cat)}</h3>
-            {cat.note && <p class="mt-0.5 text-[14px] text-brand-ink/65">{t(cat.note)}</p>}
+            <h3 class="font-sans text-[18px] text-brand-ink font-semibold">{t(cat)}{cat.note && <span class="ml-2 inline-block whitespace-nowrap align-middle rounded-full bg-brand-red/10 px-2.5 py-0.5 text-[13px] font-medium text-brand-red">{t(cat.note)}</span>}</h3>
           </div>
           {cat.sharedImage && <div class="flavor-hero">
             <img class="flavor-bg" src={img(`${cat.id}-plate.jpg`)} alt={t(cat)} width={cat.id === 'mini-dumplings' ? 1352 : 1400} height={cat.id === 'mini-dumplings' ? 962 : 758} loading="lazy" decoding="async" />

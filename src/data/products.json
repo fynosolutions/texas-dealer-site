@@ -81,7 +81,11 @@
         "caseCount": "Approx. 346"
       }
     ],
-    "sharedImage": true
+    "sharedImage": true,
+    "note": {
+      "en": "Pan-Fry or Steam",
+      "zh": "可煎可蒸"
+    }
   },
   {
     "id": "soup-dumplings",
