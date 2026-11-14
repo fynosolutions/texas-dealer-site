@@ -28,7 +28,7 @@ const offers = [
   <div class="container-x pt-10 sm:pt-14 pb-12 sm:pb-16">
     <div>
       <span class="title-mark" aria-hidden="true"></span>
-      <h1 class="display-hx text-bal text-[clamp(34px,3.8vw,56px)]">{tr('wholesale.hero.title', locale)}</h1>
+      <h1 class="display-hx text-bal text-[clamp(34px,3.8vw,56px)]">{isZh ? (() => { const t = tr('wholesale.hero.title', locale); return <>{t.slice(0, -4)}<span class="whitespace-nowrap">{t.slice(-4)}</span></>; })() : tr('wholesale.hero.title', locale)}</h1>
     </div>
     <p class="page-lede lede-indent mt-5 text-bal">
       {tr('wholesale.hero.body', locale)}

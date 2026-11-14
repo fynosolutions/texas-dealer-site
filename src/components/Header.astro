@@ -36,7 +36,7 @@ function isActive(match: string): boolean {
 <header class="dealer-header fixed inset-x-0 top-4 sm:top-6 z-50 pointer-events-none">
   <div class="flex justify-center px-4">
     <div class="pointer-events-auto flex items-center gap-1 sm:gap-2 rounded-full bg-[#EDEDEB]/90 backdrop-blur-md shadow-[0_2px_14px_rgba(0,0,0,0.18)] pl-3 pr-2 py-2 max-w-full">
-      <a href={`${prefix}/`} class="flex items-center gap-2 pr-2 sm:pr-4 sm:border-r sm:border-black/10" aria-label={company.legalName[locale]}>
+      <a href={`${prefix}/`} class="flex items-center gap-2 min-h-[40px] pr-2 sm:pr-4 sm:border-r sm:border-black/10" aria-label={company.legalName[locale]}>
         <img
           src="/assets/yaya-logo.svg"
           alt="YAYA DUMPLING WHOLESALE"
@@ -94,7 +94,7 @@ function isActive(match: string): boolean {
 
   
   <div class="language-switch pointer-events-auto inline-flex items-center absolute right-3 sm:right-6 top-0 rounded-full bg-white/90 backdrop-blur border border-black/10 shadow-sm px-0.5 sm:px-1 py-1 text-[12px] font-semibold tracking-[0.04em] sm:tracking-[0.08em] text-brand-ink">
-    {langLinks.map((l) => <a href={l.href} aria-label={l.aria} class="inline-flex items-center justify-center min-w-[34px] min-h-[38px] rounded-full px-1.5 sm:px-3 hover:bg-black/5 transition-colors">{l.short ? <><span data-keep class="sm:hidden">{l.short}</span><span data-keep class="hidden sm:inline">{l.label}</span></> : <span data-keep>{l.label}</span>}</a>)}
+    {langLinks.map((l) => <a href={l.href} aria-label={l.aria} class="inline-flex items-center justify-center min-w-[40px] min-h-[40px] rounded-full px-1.5 sm:px-3 hover:bg-black/5 transition-colors">{l.short ? <><span data-keep class="sm:hidden">{l.short}</span><span data-keep class="hidden sm:inline">{l.label}</span></> : <span data-keep>{l.label}</span>}</a>)}
   </div>
 
   

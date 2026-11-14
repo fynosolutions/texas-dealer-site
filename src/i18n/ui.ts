@@ -95,7 +95,7 @@ export const t: Record<string, Record<'en' | 'zh-Hant',string>> = {
   },
   "footer.rights": {
     "en": "© 2026 YAYA DUMPLING WHOLESALE. All rights reserved.",
-    "zh-Hant": "© 2026 YAYA DUMPLING WHOLESALE。版權所有。"
+    "zh-Hant": "© 2026 YAYA DUMPLING WHOLESALE 版權所有"
   },
   "products.hero.title": {
     "en": "Full Catalog · Specs & Case Counts",
