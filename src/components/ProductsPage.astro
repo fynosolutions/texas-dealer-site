@@ -1,4 +1,5 @@
 ---
+import Icon from "./Icon.astro";
 import CatalogSpec from './CatalogSpec.astro';
 import { tr, company, type Locale } from '../i18n/ui';
 
@@ -17,7 +18,7 @@ const telHref = `tel:${company.phone.replace(/[^0-9+]/g, '')}`;
   <div class="container-x pt-10 sm:pt-14 pb-12 sm:pb-16">
     <div>
       <span class="title-mark" aria-hidden="true"></span>
-      <h1 class="display-hx text-bal text-[clamp(34px,3.8vw,56px)]">{tr('products.hero.title', locale)}</h1>
+      <h1 class="display-hx text-bal text-[clamp(34px,3.8vw,56px)]">{tr('products.hero.title', locale).split(' · ').map((g, i) => <>{i > 0 && <span class="hidden sm:inline"> · </span>}<span class="block sm:inline">{g}</span></>)}</h1>
     </div>
     <p class="page-lede lede-indent mt-5 text-bal">
       {tr('products.hero.body', locale)}
@@ -46,10 +47,10 @@ const telHref = `tel:${company.phone.replace(/[^0-9+]/g, '')}`;
     </p>
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
       <a href={`${prefix}/contact/`} class="inline-flex items-center justify-center rounded-full bg-brand-red text-white px-8 py-3.5 text-[15px] font-medium hover:bg-brand-red-dark transition-colors">
-        {tr('nav.requestSamples', locale)} →
+        {tr('nav.requestSamples', locale)}<span class="ml-2"><Icon /></span>
       </a>
       <a href={company.phone ? telHref : undefined} aria-disabled={!company.phone || undefined} class="inline-flex items-center justify-center rounded-full border border-black/30 text-brand-ink px-8 py-3.5 text-[15px] hover:bg-black hover:text-white transition-colors">
-        ☎ {company.phone || (isZh ? "[電話待補]" : "[Phone to be added]")}
+        <span class="mr-2"><Icon name="phone" /></span>{company.phone || (isZh ? "[電話待補]" : "[Phone to be added]")}
       </a>
     </div>
   </div>

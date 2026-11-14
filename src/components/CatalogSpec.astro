@@ -1,4 +1,5 @@
 ---
+import Icon from "./Icon.astro";
 import products from '../data/products.json';
 import type { Locale } from '../i18n/ui';
 import { readFileSync } from 'node:fs';
@@ -37,7 +38,7 @@ const columns = [cats.slice(0, split), cats.slice(split)];
 <div class="mb-8" data-category-navigation>
   <div class="lg:hidden">
     <label for="category-select" class="block text-[14px] font-semibold mb-2">{zh ? '快速選擇品類' : 'Jump to a category'}</label>
-    <select id="category-select" class="w-full min-h-[48px] border border-black/20 rounded-md bg-white px-3 py-2">
+    <select id="category-select" class="category-select w-full min-h-[48px] border border-black/20 rounded-md bg-white pl-3 pr-10 py-2 text-brand-ink">
       <option value="">{zh ? '選擇產品品類' : 'Choose a product category'}</option>
       {products.map(cat => <option value={`category-${cat.id}`}>{t(cat)}</option>)}
     </select>
@@ -87,7 +88,7 @@ const columns = [cats.slice(0, split), cats.slice(split)];
         <span class="title-mark" aria-hidden="true"></span>
         <h2 class="display-hx text-[28px] leading-[1.2] mb-3">{zh ? '免費試樣' : 'Free samples'}</h2>
         <p class="text-[16px] leading-[1.7] text-brand-ink/75 mb-6 max-w-[40ch]">{zh ? '列出想試的品項與預計箱數，我們先寄樣品給後廚試做，再為您報批發價。' : 'List the items you want to try and your expected case quantities. We send samples for your kitchen to test, then quote wholesale pricing.'}</p>
-        <a href={zh ? `/${locale}/contact/` : '/contact/'} class="btn-primary rounded-full">{zh ? '索取試樣與報價' : 'Request samples & pricing'} →</a>
+        <a href={zh ? `/${locale}/contact/` : '/contact/'} class="btn-primary rounded-full">{zh ? '索取試樣與報價' : 'Request samples & pricing'}<span class="ml-2"><Icon /></span></a>
       </div>}
       </div>
     ))}
@@ -120,7 +121,7 @@ const columns = [cats.slice(0, split), cats.slice(split)];
   .catalog-row { padding: 14px 16px; }
   .catalog-row.has-thumb { display: grid; grid-template-columns: 128px 1fr; align-items: center; gap: 14px; }
   .catalog-thumb { display: flex; align-items: center; justify-content: center; width: 128px; height: 98px; background: #F7F3EC; border-radius: 6px; overflow: hidden; }
-  .catalog-thumb img { max-width: 96%; max-height: 96%; object-fit: contain; mix-blend-mode: multiply; }
+  .catalog-thumb img { max-width: 88%; max-height: 88%; object-fit: contain; mix-blend-mode: multiply; -webkit-mask-image: radial-gradient(closest-side, #000 86%, transparent 100%); mask-image: radial-gradient(closest-side, #000 86%, transparent 100%); }
   .catalog-name { display: block; font-size: 16px; line-height: 1.5; }
   .catalog-spec { display: flex; flex-direction: column; margin-top: 6px; font-size: 14px; line-height: 1.6; color: rgb(26 26 26 / 0.8); font-variant-numeric: tabular-nums; }
   .catalog-spec > span[aria-hidden] { display: none; }
@@ -136,8 +137,7 @@ const columns = [cats.slice(0, split), cats.slice(split)];
     .flavor-bg { width: 50%; max-width: 340px; }
     .flavor-row { grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 0 18px; margin-top: -3%; max-width: 900px; }
     .flavor-row img { max-width: 160px; }
-    .catalog-spec { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 0 6px; font-size: 14.5px; }
-    .catalog-spec > span[aria-hidden] { display: inline; }
+    .catalog-spec { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 0 14px; font-size: 14.5px; }
     [data-pack] { display: inline; }
     .spec-dot { display: inline; }
   }

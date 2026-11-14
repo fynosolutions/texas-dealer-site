@@ -1,4 +1,5 @@
 ---
+import Icon from "./Icon.astro";
 import { tr, company, type Locale } from '../i18n/ui';
 
 interface Props {
@@ -32,30 +33,30 @@ const telHref = `tel:${company.phone.replace(/[^0-9+]/g, '')}`;
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label for="f-name" class="block text-[13px] text-brand-ink/70 mb-1.5">{tr('contact.form.name', locale)} *</label>
-              <input id="f-name" name="name" maxlength="100" required type="text" autocomplete="name" class="w-full border border-black/20 px-3.5 py-2.5 text-[15px] focus:border-brand-red focus:outline-none" />
+              <input id="f-name" name="name" maxlength="100" required type="text" autocomplete="name" class="w-full border border-black/20 px-3.5 py-2.5 text-[16px] focus:border-brand-red focus:outline-none" />
             </div>
             <div>
               <label for="f-company" class="block text-[13px] text-brand-ink/70 mb-1.5">{tr('contact.form.company', locale)}</label>
-              <input id="f-company" name="company" maxlength="200" type="text" autocomplete="organization" class="w-full border border-black/20 px-3.5 py-2.5 text-[15px] focus:border-brand-red focus:outline-none" />
+              <input id="f-company" name="company" maxlength="200" type="text" autocomplete="organization" class="w-full border border-black/20 px-3.5 py-2.5 text-[16px] focus:border-brand-red focus:outline-none" />
             </div>
             <div>
               <label for="f-email" class="block text-[13px] text-brand-ink/70 mb-1.5">{tr('contact.form.email', locale)} *</label>
-              <input id="f-email" name="email" maxlength="254" required type="email" autocomplete="email" inputmode="email" class="w-full border border-black/20 px-3.5 py-2.5 text-[15px] focus:border-brand-red focus:outline-none" />
+              <input id="f-email" name="email" maxlength="254" required type="email" autocomplete="email" inputmode="email" class="w-full border border-black/20 px-3.5 py-2.5 text-[16px] focus:border-brand-red focus:outline-none" />
             </div>
             <div>
               <label for="f-phone" class="block text-[13px] text-brand-ink/70 mb-1.5">{tr('contact.form.phone', locale)}</label>
-              <input id="f-phone" name="phone" maxlength="40" type="tel" autocomplete="tel" inputmode="tel" class="w-full border border-black/20 px-3.5 py-2.5 text-[15px] focus:border-brand-red focus:outline-none" />
+              <input id="f-phone" name="phone" maxlength="40" type="tel" autocomplete="tel" inputmode="tel" class="w-full border border-black/20 px-3.5 py-2.5 text-[16px] focus:border-brand-red focus:outline-none" />
             </div>
           </div>
           <div>
             <label for="f-message" class="block text-[13px] text-brand-ink/70 mb-1.5">{tr('contact.form.message', locale)} *</label>
-            <textarea id="f-message" name="message" maxlength="5000" required rows="4" class="w-full border border-black/20 px-3.5 py-2.5 text-[15px] focus:border-brand-red focus:outline-none resize-y"></textarea>
+            <textarea id="f-message" name="message" maxlength="5000" required rows="4" class="w-full border border-black/20 px-3.5 py-2.5 text-[16px] focus:border-brand-red focus:outline-none resize-y"></textarea>
           </div>
           <button type="submit" class="inline-flex items-center justify-center rounded-full bg-brand-red text-white px-10 py-2.5 text-[15px] font-medium hover:bg-brand-red-dark transition-colors disabled:opacity-60">
             {tr('contact.form.submit', locale)}
           </button>
           <p data-cf-status class="text-[12px] data-[state=error]:text-brand-red text-brand-ink/50" role="status" aria-live="polite"></p>
-          <p class="text-[12px] text-brand-ink/50">{tr('contact.form.note', locale)}</p>
+          <p class="text-[13px] text-brand-ink/65">{tr('contact.form.note', locale)}</p>
         </form>
       </div>}
 
@@ -67,10 +68,10 @@ const telHref = `tel:${company.phone.replace(/[^0-9+]/g, '')}`;
           <li><a href={`${prefix}/wholesale/`} class="hover:text-brand-red transition-colors">{tr('nav.wholesale', locale)}</a></li>
           <li><a href={`${prefix}/contact/`} class="hover:text-brand-red transition-colors">{tr('nav.contact', locale)}</a></li>
         </ul>
-        <div class="mt-6 text-[12px] tracking-[0.14em] uppercase text-brand-ink/45">
+        <div class="mt-6 text-[13px] tracking-[0.1em] uppercase text-brand-ink/60">
           {isZh ? "服務德州餐飲店" : "Serving Texas Restaurants"}
         </div>
-        <div class="mt-2 text-[12px] tracking-[0.14em] text-brand-ink/45">USDA · SQF · FDA</div>
+        <div class="mt-2 text-[13px] tracking-[0.06em] text-brand-ink/60">{isZh ? "USDA 檢驗 · SQF 認證 · FDA 註冊" : "USDA inspected · SQF certified · FDA registered"}</div>
       </div>
 
       
@@ -82,6 +83,7 @@ const telHref = `tel:${company.phone.replace(/[^0-9+]/g, '')}`;
           <div><a href={company.phone ? telHref : undefined} aria-disabled={!company.phone || undefined} class="hover:text-brand-red transition-colors">{company.contactName ? company.contactName + ' · ' : ''}TEL: {company.phone || (isZh ? "[電話待補]" : "[Phone to be added]")}</a></div>
           {company.address && <div>{company.address}</div>}
         </address>
+        {company.phone && <a href={telHref} class="mt-5 inline-flex items-center justify-center min-h-[44px] rounded-full border border-brand-ink/30 px-6 text-[15px] text-brand-ink hover:bg-brand-ink hover:text-white transition-colors"><span class="mr-2"><Icon name="phone" /></span>{isZh ? `致電 ${company.contactName || ""}` : `Call ${company.contactName || ""}`}</a>}
         <div class="mt-6 flex items-center gap-3">
           <img src="/assets/yaya-logo.svg" alt="YAYA DUMPLING WHOLESALE" class="h-9 w-9 object-contain" width="36" height="36" />
           <span class="text-[13px] text-brand-ink/60">{tr('footer.brand.title', locale)}</span>
@@ -89,7 +91,7 @@ const telHref = `tel:${company.phone.replace(/[^0-9+]/g, '')}`;
       </div>
     </div>
 
-    <div class="mt-12 pt-6 border-t border-black/10 flex flex-col sm:flex-row gap-2 justify-between text-[12px] text-brand-ink/45">
+    <div class="mt-12 pt-6 border-t border-black/10 flex flex-col sm:flex-row gap-2 justify-between text-[13px] text-brand-ink/55">
       <span>{tr('footer.rights', locale)}</span>
       {company.website && <span>{company.website}</span>}
     </div>
