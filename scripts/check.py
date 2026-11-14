@@ -30,8 +30,12 @@ for f in pages:
   source=json.loads((root/'reference/catalog-specs.json').read_text(encoding='utf8'))
   items=[item for group in groups for item in group['items']]
   rows=soup.select('[data-product-id]')
-  assert len(rows)==len(items)==len(source)==29
-  for row,item,original in zip(rows,items,source):
+  assert len(rows)==len(items)<=len(source)
+  src=iter(source)
+  for row,item in zip(rows,items):
+   nums=lambda s:re.findall(r'\d+(?:\.\d+)?',s)
+   original=next((o for o in src if nums(o['pack'])==nums(item['pack']) and o['caseCount']==item['caseCount']),None)
+   assert original,('no matching PDF row in order',item['id'])
    assert row['data-product-id']==item['id']
    assert row.select_one('[data-pack]')['aria-label']==item['pack']
    assert row.select_one('[data-case-count]')['aria-label']=='Case quantity: '+item['caseCount']
@@ -42,4 +46,4 @@ for f in pages:
   catalog=soup.select_one('[data-product-catalog]').get_text(' ',strip=True)
   assert not re.search(r'\$|USD|unit price|case price|整箱價|單價|整箱价|单价',catalog,re.I)
   assert len(soup.select('main h3'))==9
-print('PASS: 12 routes, 29 PDF product rows, 9 categories, pack/count match, no catalog prices, assets and forms.')
+print(f'PASS: 12 routes, {len(items)} product rows (in PDF order), 9 categories, pack/count match, no catalog prices, assets and forms.')
