@@ -1,4 +1,5 @@
 ---
+import Icon from "./Icon.astro";
 import { tr, type Locale } from '../i18n/ui';
 interface Props { locale: Locale; }
 const { locale } = Astro.props;
@@ -25,7 +26,7 @@ const steps = zh
       {zh ? '試樣品種與數量由銷售確認。' : 'Sales will confirm which samples and quantities we can send.'}
     </p>
     <div class="mt-8 flex justify-center">
-      <a href={`${prefix}/contact/`} class="btn-primary rounded-full">{tr('journey.cta', locale)} →</a>
+      <a href={`${prefix}/contact/`} class="btn-primary rounded-full">{tr('journey.cta', locale)}<span class="ml-2"><Icon /></span></a>
     </div>
   </div>
 </section>

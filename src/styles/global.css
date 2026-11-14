@@ -43,7 +43,7 @@
     @apply inline-flex items-center justify-center border border-brand-ink text-brand-ink px-7 py-3.5 font-medium tracking-wide transition-all hover:bg-brand-ink hover:text-white focus:outline-none focus:ring-2 focus:ring-brand-ink focus:ring-offset-2;
   }
   .btn-on-dark {
-    @apply inline-flex items-center justify-center border border-white/40 text-white px-7 py-3.5 font-medium tracking-wide transition-all hover:bg-white hover:text-brand-ink;
+    @apply inline-flex items-center justify-center border border-white/70 text-white px-7 py-3.5 font-medium tracking-wide transition-all hover:bg-white hover:text-brand-ink;
   }
   /* v2 "Factory Cinematic" display type — Helvetica-family grotesque, regular weight */
   .display-hx {
@@ -104,3 +104,15 @@ a[aria-disabled="true"] { cursor: default; opacity: .65; pointer-events: none; }
   .hero-kenburns { animation: none; }
   .rev { opacity: 1; transform: none; transition: none; }
 }
+
+/* custom select (native look differs on iPhone) */
+.category-select { -webkit-appearance: none; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%231a1a18' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; }
+
+/* keep anchored headings clear of the fixed bar */
+html { scroll-padding-top: 110px; }
+/* white band behind the floating bar so scrolled content does not peek around it */
+.dealer-header::before { content: ""; position: absolute; left: 0; right: 0; top: -24px; height: 100px; background: linear-gradient(to bottom, rgba(255,255,255,.97) 86%, rgba(255,255,255,0)); opacity: 0; transition: opacity .2s ease; pointer-events: none; z-index: -1; }
+.dealer-header.is-scrolled::before { opacity: 1; }
+@media (max-width: 639px) { .dealer-header::before { top: -16px; height: 84px; } }
+/* home product cut-outs: fade the hard-cut shadow at the bottom edge */
+.cutout-fade { -webkit-mask-image: linear-gradient(to bottom, #000 86%, transparent 100%); mask-image: linear-gradient(to bottom, #000 86%, transparent 100%); }

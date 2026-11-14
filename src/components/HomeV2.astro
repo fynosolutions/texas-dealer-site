@@ -1,4 +1,7 @@
 ---
+import Icon from "./Icon.astro";
+import productGroups from "../data/products.json";
+const productCount = productGroups.reduce((n, g) => n + g.items.length, 0);
 import { tr, company, type Locale } from '../i18n/ui';
 
 interface Props {
@@ -11,7 +14,7 @@ const prefix = isZh ? `/${locale}` : '';
 
 
 ---
-<section class="relative min-h-[100svh] bg-black text-white overflow-hidden flex flex-col justify-end">
+<section class:list={["relative min-h-[100svh] bg-black text-white overflow-hidden flex flex-col justify-end", isZh && "lg:justify-center"]}>
   <div class="absolute inset-0" data-hero-video>
     
     <img src="/assets/gyoza-chopsticks-dark.jpg" alt={isZh ? "煎餃出餐展示" : "Pan-fried gyoza ready to serve"} class="hero-image absolute top-0 left-0 h-[60svh] lg:h-full w-full lg:w-[140%] max-w-none object-cover [mask-image:linear-gradient(to_bottom,black_55%,transparent)] lg:[mask-image:none]" width="1672" height="941" fetchpriority="high" />
@@ -25,53 +28,53 @@ const prefix = isZh ? `/${locale}` : '';
       {!isZh && <> {tr('hero.title2', locale)}</>}
     </h1>
     <p class="mt-6 text-[17px] sm:text-[20px] leading-relaxed text-white/90 max-w-[60ch] text-bal">{tr('hero.subtitle', locale)}</p>
-    <p class="mt-5 text-[13px] sm:text-[14px] tracking-[0.18em] text-white/75">{isZh ? 'USDA · SQF · FDA 認證工廠出品' : 'USDA · SQF · FDA certified production'}</p>
+    <p class="mt-5 text-[14px] sm:text-[15px] tracking-[0.06em] font-medium text-white/90">{isZh ? 'USDA 檢驗 · SQF 認證 · FDA 註冊工廠出品' : 'USDA inspected · SQF certified · FDA registered facility'}</p>
     <div class="mt-8 flex flex-col sm:flex-row gap-4" data-home-actions>
-      <a href={`${prefix}/products/`} class="btn-primary rounded-full">{tr('hero.catalog', locale)} →</a>
+      <a href={`${prefix}/products/`} class="btn-primary rounded-full">{tr('hero.catalog', locale)}<span class="ml-2"><Icon /></span></a>
       <a href={`tel:${company.phone.replace(/[^0-9+]/g, '')}`} class="btn-on-dark rounded-full">{isZh ? '致電' : 'Call'} {company.phone}</a>
     </div>
   </div>
 </section>
 
 <section class="bg-white text-brand-ink">
-  <div class="container-x py-20 sm:py-28">
+  <div class="container-x py-16 sm:py-20">
     <span class="title-mark mx-auto" aria-hidden="true"></span>
-    <h2 class="display-hx text-[44px] sm:text-[64px] text-center mb-14 sm:mb-20 rev">{tr('home2.types.title', locale)}</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20 lg:gap-x-20 lg:gap-y-28 max-w-5xl mx-auto">
+    <h2 class="display-hx text-[44px] sm:text-[64px] text-center mb-8 sm:mb-10 rev">{tr('home2.types.title', locale)}</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-14 lg:gap-x-20 lg:gap-y-20 max-w-5xl mx-auto">
       <div class="text-center rev">
-        <img src="/assets/colorful-raw-white.jpg" alt={tr('product.colorful.name', locale)} class="w-full h-[260px] sm:h-[330px] object-contain object-bottom mix-blend-multiply mb-6" loading="lazy" />
-        <h3 class="display-hx text-[26px] sm:text-[30px] mb-4">{tr('product.colorful.name', locale)}</h3>
+        <img src="/assets/colorful-raw-white.jpg" alt={tr('product.colorful.name', locale)} class="w-full h-[260px] sm:h-[330px] object-contain object-bottom mix-blend-multiply cutout-fade mb-6" loading="lazy" />
+        <h3 class="display-hx text-bal text-[24px] sm:text-[30px] mb-4">{tr('product.colorful.name', locale)}</h3>
         <p class="text-[15px] leading-relaxed text-brand-ink/75 max-w-md mx-auto text-bal">{tr('product.colorful.body', locale)}</p>
-        <a href={`${prefix}/products/#category-five-color`} class="inline-block mt-4 text-brand-red text-[14px] underline underline-offset-4">{isZh ? '查看口味與規格' : 'View flavors & specifications'} →</a>
+        <a href={`${prefix}/products/#category-five-color`} class="inline-flex items-center min-h-[44px] mt-2 text-brand-red text-[15px] underline underline-offset-4">{isZh ? '查看口味與規格' : 'View flavors & specifications'}<span class="ml-2"><Icon /></span></a>
       </div>
       <div class="text-center rev">
-        <img src="/assets/soup-dumplings-white.jpg" alt={tr('product.soup.name', locale)} class="w-full h-[260px] sm:h-[330px] object-contain object-bottom mix-blend-multiply mb-6" loading="lazy" />
-        <h3 class="display-hx text-[26px] sm:text-[30px] mb-4">{tr('product.soup.name', locale)}</h3>
+        <img src="/assets/soup-dumplings-white.jpg" alt={tr('product.soup.name', locale)} class="w-full h-[260px] sm:h-[330px] object-contain object-bottom mix-blend-multiply cutout-fade mb-6" loading="lazy" />
+        <h3 class="display-hx text-bal text-[24px] sm:text-[30px] mb-4">{tr('product.soup.name', locale)}</h3>
         <p class="text-[15px] leading-relaxed text-brand-ink/75 max-w-md mx-auto text-bal">{tr('product.soup.body', locale)}</p>
-        <a href={`${prefix}/products/#category-soup-dumplings`} class="inline-block mt-4 text-brand-red text-[14px] underline underline-offset-4">{isZh ? '查看口味與規格' : 'View flavors & specifications'} →</a>
+        <a href={`${prefix}/products/#category-soup-dumplings`} class="inline-flex items-center min-h-[44px] mt-2 text-brand-red text-[15px] underline underline-offset-4">{isZh ? '查看口味與規格' : 'View flavors & specifications'}<span class="ml-2"><Icon /></span></a>
       </div>
       <div class="text-center rev">
-        <img src="/assets/rice-balls-white.jpg" alt={tr('product.fried-rice-ball.name', locale)} class="w-full h-[260px] sm:h-[330px] object-contain object-bottom mix-blend-multiply mb-6" loading="lazy" />
-        <h3 class="display-hx text-[26px] sm:text-[30px] mb-4">{tr('product.fried-rice-ball.name', locale)}</h3>
+        <img src="/assets/rice-balls-white.jpg" alt={tr('product.fried-rice-ball.name', locale)} class="w-full h-[260px] sm:h-[330px] object-contain object-bottom mix-blend-multiply cutout-fade mb-6" loading="lazy" />
+        <h3 class="display-hx text-bal text-[24px] sm:text-[30px] mb-4">{tr('product.fried-rice-ball.name', locale)}</h3>
         <p class="text-[15px] leading-relaxed text-brand-ink/75 max-w-md mx-auto text-bal">{tr('product.fried-rice-ball.body', locale)}</p>
-        <a href={`${prefix}/products/#category-rice-balls`} class="inline-block mt-4 text-brand-red text-[14px] underline underline-offset-4">{isZh ? '查看口味與規格' : 'View flavors & specifications'} →</a>
+        <a href={`${prefix}/products/#category-rice-balls`} class="inline-flex items-center min-h-[44px] mt-2 text-brand-red text-[15px] underline underline-offset-4">{isZh ? '查看口味與規格' : 'View flavors & specifications'}<span class="ml-2"><Icon /></span></a>
       </div>
       <div class="text-center rev">
-        <img src="/assets/cooked-gyoza.jpg" alt={tr('product.gyoza.name', locale)} class="w-full h-[260px] sm:h-[330px] object-contain object-bottom mix-blend-multiply mb-6" loading="lazy" />
-        <h3 class="display-hx text-[26px] sm:text-[30px] mb-4">{tr('product.gyoza.name', locale)}</h3>
+        <img src="/assets/cooked-gyoza.jpg" alt={tr('product.gyoza.name', locale)} class="w-full h-[260px] sm:h-[330px] object-contain object-bottom mix-blend-multiply cutout-fade mb-6" loading="lazy" />
+        <h3 class="display-hx text-bal text-[24px] sm:text-[30px] mb-4">{tr('product.gyoza.name', locale)}</h3>
         <p class="text-[15px] leading-relaxed text-brand-ink/75 max-w-md mx-auto text-bal">{tr('product.gyoza.body', locale)}</p>
-        <a href={`${prefix}/products/#category-cooked-gyoza`} class="inline-block mt-4 text-brand-red text-[14px] underline underline-offset-4">{isZh ? '查看口味與規格' : 'View flavors & specifications'} →</a>
+        <a href={`${prefix}/products/#category-cooked-gyoza`} class="inline-flex items-center min-h-[44px] mt-2 text-brand-red text-[15px] underline underline-offset-4">{isZh ? '查看口味與規格' : 'View flavors & specifications'}<span class="ml-2"><Icon /></span></a>
       </div>
     </div>
-    <div class="mt-16 sm:mt-20 text-center">
-      <a href={`${prefix}/products/`} class="btn-secondary rounded-full">{isZh ? '查看全部 29 款產品' : 'View all 29 products'} →</a>
+    <div class="mt-12 sm:mt-14 text-center">
+      <a href={`${prefix}/products/`} class="btn-secondary rounded-full">{isZh ? `查看全部 ${productCount} 款產品` : `View all ${productCount} products`}<span class="ml-2"><Icon /></span></a>
     </div>
   </div>
 </section>
 
 
 <section class="bg-white text-brand-ink">
-  <div class="container-x py-16 sm:py-24">
+  <div class="container-x pt-8 pb-16 sm:pt-10 sm:pb-20">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
       <div class="lg:col-span-5 rev">
         <div>
@@ -88,7 +91,7 @@ const prefix = isZh ? `/${locale}` : '';
           href={`${prefix}/contact/`}
           class="lede-indent inline-flex items-center gap-2 mt-8 text-[15px] font-medium text-brand-red hover:text-brand-red-dark transition-colors"
         >
-          {tr('closing.cta', locale)} →
+          {tr('closing.cta', locale)}<span class="ml-2"><Icon /></span>
         </a>
       </div>
       <img

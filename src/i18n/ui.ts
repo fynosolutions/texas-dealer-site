@@ -95,7 +95,7 @@ export const t: Record<string, Record<'en' | 'zh-Hant',string>> = {
   },
   "footer.rights": {
     "en": "© 2026 YAYA DUMPLING WHOLESALE. All rights reserved.",
-    "zh-Hant": "© 2026 YAYA DUMPLING WHOLESALE。版權所有。"
+    "zh-Hant": "© 2026 YAYA DUMPLING WHOLESALE 版權所有"
   },
   "products.hero.title": {
     "en": "Full Catalog · Specs & Case Counts",
@@ -234,12 +234,12 @@ export const t: Record<string, Record<'en' | 'zh-Hant',string>> = {
     "zh-Hant": "電話"
   },
   "contact.form.message": {
-    "en": "Message",
-    "zh-Hant": "訊息"
+    "en": "Products, expected cases & delivery city / ZIP",
+    "zh-Hant": "產品、預計箱數及配送城市／郵遞區號"
   },
   "contact.form.submit": {
-    "en": "Send Request",
-    "zh-Hant": "送出"
+    "en": "Request a Wholesale Quote",
+    "zh-Hant": "索取批發報價"
   },
   "contact.form.note": {
     "en": "Please include the products, quantities and delivery location you need. We will use your contact details to respond to your inquiry.",
