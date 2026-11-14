@@ -53,8 +53,8 @@ const telHref = `tel:${company.phone.replace(/[^0-9+]/g, '')}`;
               <input id="email" name="email" maxlength="254" required type="email" autocomplete="email" inputmode="email" class="w-full border border-black/20 px-3.5 py-2.5 text-[16px] focus:border-brand-red focus:outline-none" />
             </div>
             <div>
-              <label for="phone" class="block text-[13px] text-brand-ink/70 mb-1.5">{tr('contact.form.phone', locale)}</label>
-              <input id="phone" name="phone" maxlength="40" type="tel" autocomplete="tel" inputmode="tel" class="w-full border border-black/20 px-3.5 py-2.5 text-[16px] focus:border-brand-red focus:outline-none" />
+              <label for="phone" class="block text-[13px] text-brand-ink/70 mb-1.5">{tr('contact.form.phone', locale)} *</label>
+              <input id="phone" name="phone" maxlength="40" required type="tel" autocomplete="tel" inputmode="tel" class="w-full border border-black/20 px-3.5 py-2.5 text-[16px] focus:border-brand-red focus:outline-none" />
             </div>
           </div>
           <div>

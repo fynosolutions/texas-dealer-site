@@ -63,7 +63,7 @@ try {
  await page.route('**/api/contact',route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({status:'mock',mock:true})}));
  for(const route of ['/contact/','/zh-Hant/contact/','/']){
   await page.goto(base+route);
-  const form=page.locator('form');await form.locator('[name="name"]').fill('Preview Buyer');await form.locator('[name="email"]').fill('preview@example.com');await form.locator('[name="message"]').fill('Test inquiry — do not send.');
+  const form=page.locator('form');await form.locator('[name="name"]').fill('Preview Buyer');await form.locator('[name="email"]').fill('preview@example.com');await form.locator('[name="phone"]').fill('5550001111');await form.locator('[name="message"]').fill('Test inquiry — do not send.');
   await form.locator('button').click();await page.waitForFunction(()=>document.querySelector('[data-cf-status]').textContent.includes('Simulation')||document.querySelector('[data-cf-status]').textContent.includes('模擬提交完成'));
   assert.equal(await form.locator('[name="message"]').inputValue(),'Test inquiry — do not send.');
  }
@@ -75,6 +75,7 @@ try {
   const form=page.locator('form');
   await form.locator('[name="name"]').fill('Browser Test');
   await form.locator('[name="email"]').fill('buyer@example.com');
+  await form.locator('[name="phone"]').fill('5550001111');
   await form.locator('[name="message"]').fill('Browser test only');
   for(const [http,body] of [[503,{status:'failed',error:'not_configured'}],[200,{status:'unknown'}],[502,{status:'accepted'}]]) {
    await page.unroute('**/api/contact');
