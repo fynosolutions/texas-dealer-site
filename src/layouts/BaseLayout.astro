@@ -21,6 +21,23 @@ const description = locale !== 'en' ? '為德州餐飲店提供水餃、煎餃�
     <link rel="alternate" hreflang="zh-Hant" href={SITE + '/zh-Hant' + basePath} />
     <link rel="alternate" hreflang="zh-Hans" href={SITE + '/zh-Hans' + basePath} />
     <link rel="alternate" hreflang="x-default" href={SITE + basePath} />
+    <script is:inline>
+      if (location.hostname === 'yayadumplings.com') {
+        var gs = document.createElement('script'); gs.async = true;
+        gs.src = 'https://www.googletagmanager.com/gtag/js?id=G-KL5JWRGZ0Y';
+        document.head.appendChild(gs);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { dataLayer.push(arguments); };
+        gtag('js', new Date()); gtag('config', 'G-KL5JWRGZ0Y', { anonymize_ip: true });
+        document.addEventListener('click', function (e) {
+          var a = e.target.closest && e.target.closest('a[href^="tel:"],a[href^="mailto:"]');
+          if (!a) return;
+          var tel = a.getAttribute('href').indexOf('tel:') === 0;
+          var inFooter = !!a.closest('footer'), inHeader = !!a.closest('header');
+          gtag('event', tel ? 'call_click' : 'email_click', { click_location: inHeader ? 'header' : inFooter ? 'footer' : 'page', page_path: location.pathname });
+        });
+      }
+    </script>
     <link rel="icon" type="image/svg+xml" href="/assets/yaya-logo.svg" />
     <title>{title}</title>
     <meta name="description" content={description} />

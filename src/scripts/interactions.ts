@@ -54,7 +54,7 @@ document.querySelectorAll<HTMLFormElement>('form[data-cf-form]').forEach(form =>
       const known = ['accepted','partial','unknown','failed','mock','not_configured'].includes(state);
       status.textContent = known ? messages[state as keyof typeof messages] : messages.failed;
       if (!response.ok || ['failed','partial','unknown'].includes(state)) status.dataset.state = 'error';
-      if (state === 'accepted') form.reset();
+      if (state === 'accepted') { (window as any).gtag?.('event', 'inquiry_submit', { page_path: location.pathname }); form.reset(); }
     } catch {
       status.textContent = messages.unknown; status.dataset.state = 'error';
     } finally {
