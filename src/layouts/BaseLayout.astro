@@ -5,6 +5,9 @@ import Footer from '../components/Footer.astro';
 import type { Locale } from '../i18n/ui';
 interface Props { locale: Locale; title: string; currentPath: string; }
 const {locale, title, currentPath} = Astro.props;
+const SITE = 'https://yayadumplings.com';
+const basePath = currentPath.replace(/^\/zh-Han[st]\//, '/');
+const canonical = SITE + currentPath;
 const isHome = /^\/(zh-Han[st]\/)?$/.test(currentPath);
 const description = locale !== 'en' ? '為德州餐飲店提供水餃、煎餃、包點及點心選品、批發報價與配送溝通。' : 'Dumplings, gyoza, buns and dim sum for Texas restaurants. Product selection, wholesale pricing and delivery coordination.';
 ---
@@ -13,14 +16,19 @@ const description = locale !== 'en' ? '為德州餐飲店提供水餃、煎餃�
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="noindex,nofollow" />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={SITE + basePath} />
+    <link rel="alternate" hreflang="zh-Hant" href={SITE + '/zh-Hant' + basePath} />
+    <link rel="alternate" hreflang="zh-Hans" href={SITE + '/zh-Hans' + basePath} />
+    <link rel="alternate" hreflang="x-default" href={SITE + basePath} />
     <link rel="icon" type="image/svg+xml" href="/assets/yaya-logo.svg" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/assets/gyoza-chopsticks-dark.jpg" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={SITE + '/assets/gyoza-chopsticks-dark.jpg'} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
